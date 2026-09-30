@@ -52,7 +52,7 @@
         "name": "Zenkord-Installer.exe",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/Zenkord-Installer.exe",
         "size": 72226254,
-        "downloads": 0
+        "downloads": 1
       },
       {
         "name": "Zenkord.user.js",
@@ -103,7 +103,7 @@
         "name": "zenkord-dist.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-dist.zip",
         "size": 26416266,
-        "downloads": 0
+        "downloads": 1
       },
       {
         "name": "Zenkord-Firefox.zip",
