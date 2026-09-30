@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zenkord</title>
+<meta name="description" content="Zenkord, ton Discord en mieux. Plus rapide, plus beau, plus complet. Gratuit et open source.">
+<meta property="og:title" content="Zenkord">
+<meta property="og:description" content="Ton Discord, en mieux. Gratuit et open source.">
+<meta property="og:image" content="https://zenkord.kdns.fr/logo.png">
+<meta name="theme-color" content="#140f5c">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="favicon.png">
+<link rel="preload" href="fonts/lilita-one-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<style>
+.hero { position: relative; padding: 24px 0 90px; text-align: center; isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: -120px 0 0; z-index: -3; background: radial-gradient(700px 480px at 50% 30%, rgba(108, 123, 255, .55), transparent 70%), radial-gradient(900px 600px at 50% 10%, var(--royal-2), transparent 75%), var(--navy); }
+.rays { position: absolute; left: 50%; top: 250px; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; z-index: -2; opacity: .16; background: repeating-conic-gradient(from 0deg, var(--gold) 0deg 6deg, transparent 6deg 24deg); -webkit-mask: radial-gradient(closest-side, #000 20%, transparent 70%); mask: radial-gradient(closest-side, #000 20%, transparent 70%); animation: spin 90s linear infinite; }
+@keyframes spin { to { rotate: 360deg; } }
+.stars { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.stars svg { position: absolute; color: var(--gold); animation: twinkle 3s ease-in-out infinite; }
+.stars svg.w { color: var(--white); }
+@keyframes twinkle { 0%, 100% { opacity: .25; scale: .7; } 50% { opacity: 1; scale: 1; } }
+
+.logo-stage { position: relative; width: min(420px, 78vw); margin: 0 auto; aspect-ratio: 1; perspective: 900px; }
+.logo-btn { position: absolute; inset: 0; border: 0; padding: 0; background: none; cursor: pointer; transform-style: preserve-3d; transition: transform .15s ease-out; border-radius: 30%; }
+.logo-btn img { width: 100%; height: 100%; filter: drop-shadow(0 30px 40px rgba(7, 5, 42, .55)); animation: float 6s ease-in-out infinite; pointer-events: none; }
+.logo-btn.boing img { animation: boing .6s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes float { 0%, 100% { translate: 0 0; rotate: -2deg; } 50% { translate: 0 -14px; rotate: 1.5deg; } }
+@keyframes boing { 0% { scale: 1; } 30% { scale: 1.12 .88; } 55% { scale: .92 1.08; } 80% { scale: 1.03 .97; } 100% { scale: 1; } }
+.logo-hint { position: absolute; left: 50%; bottom: -8px; translate: -50% 0; font-weight: 900; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); opacity: .8; white-space: nowrap; }
+
+.chip-sticker { position: absolute; z-index: 2; font-family: var(--display); font-size: 1.15rem; letter-spacing: .02em; padding: 8px 16px; border-radius: 14px; border: 3px solid var(--white); box-shadow: 0 5px 0 var(--shadow); white-space: nowrap; cursor: grab; user-select: none; touch-action: none; transition: box-shadow .2s, scale .2s; rotate: var(--r, 0deg); }
+.chip-sticker:hover { scale: 1.06; }
+.chip-sticker.dragging { cursor: grabbing; scale: 1.12; box-shadow: 0 16px 0 rgba(7, 5, 42, .5), 0 30px 40px rgba(7, 5, 42, .5); z-index: 5; }
+.chip-sticker.gold { background: var(--gold); color: #2a1b00; }
+.chip-sticker.blue { background: var(--royal); color: var(--white); }
+.chip-sticker.white { background: var(--white); color: var(--royal-2); }
+.cs1 { top: 12%; left: -34%; --r: -9deg; }
+.cs2 { top: 6%; right: -30%; --r: 8deg; }
+.cs3 { bottom: 16%; left: -38%; --r: 6deg; }
+.cs4 { bottom: 10%; right: -34%; --r: -7deg; }
+
+.hero h1 { font-size: clamp(3.2rem, 9vw, 7.2rem); margin: 26px 0 18px; }
+.hero h1 .ch { display: inline-block; transition: transform .3s cubic-bezier(.34, 1.56, .64, 1); animation: popIn .7s cubic-bezier(.34, 1.56, .64, 1) backwards; }
+.hero h1 .ch:hover { transform: translateY(-10px) rotate(-6deg) scale(1.1); }
+@keyframes popIn { from { opacity: 0; transform: translateY(40px) scale(.4) rotate(12deg); } }
+.hero .sub { max-width: 620px; margin: 0 auto 34px; font-size: 1.2rem; font-weight: 700; color: var(--muted); }
+.hero .sub b { color: var(--white); }
+.cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.live { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 30px; }
+.live span { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14); font-weight: 800; font-size: .92rem; color: var(--muted); }
+.live b { color: var(--white); font-variant-numeric: tabular-nums; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--online); animation: pulse 2s infinite; flex: none; }
+.dot.idle { background: var(--gold); }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(61, 220, 132, .7); } 70% { box-shadow: 0 0 0 9px rgba(61, 220, 132, 0); } 100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); } }
+.live-mode { display: block; margin-top: 12px; font-size: .82rem; font-weight: 700; color: #8a8fc4; }
+.live-mode button { background: none; border: 0; padding: 0; color: var(--gold); font-weight: 800; text-decoration: underline; cursor: pointer; font-size: inherit; }
+
+.ribbon { position: relative; z-index: 3; background: var(--gold); color: #2a1b00; border-block: 4px solid var(--white); rotate: -2deg; margin: -30px -20px 0; overflow: hidden; box-shadow: 0 8px 0 var(--shadow); }
+.ribbon.b { background: var(--royal); color: var(--white); rotate: 2deg; margin-top: -58px; z-index: 2; }
+.ribbon div { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+.ribbon.b div { animation-direction: reverse; }
+.ribbon span { font-family: var(--display); font-size: 1.6rem; padding: 12px 22px; white-space: nowrap; display: flex; align-items: center; gap: 22px; }
+.ribbon span::after { content: "★"; font-size: 1.1rem; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.stats { background: var(--gold); color: #2a1b00; padding: 110px 0 100px; position: relative; margin-top: -30px; }
+.stats h2 { text-align: center; font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0 0 14px; color: var(--royal); }
+.stats .note { text-align: center; font-weight: 800; color: #6b5200; margin: 0 0 54px; font-size: .95rem; }
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.stat { background: var(--white); border-radius: 26px; padding: 26px 22px 24px; text-align: center; border: 4px solid var(--white); box-shadow: 0 8px 0 var(--gold-side), 0 20px 30px -12px rgba(90, 60, 0, .45); position: relative; }
+.stat .ic { width: 58px; height: 58px; margin: -54px auto 10px; border-radius: 18px; display: grid; place-items: center; border: 4px solid var(--white); box-shadow: 0 5px 0 var(--shadow); }
+.stat .ic svg { width: 28px; height: 28px; }
+.ic.bl { background: var(--royal); color: var(--white); }
+.ic.gd { background: var(--gold); color: #2a1b00; }
+.stat .num { font-family: var(--display); font-size: clamp(2.4rem, 4.2vw, 3.3rem); line-height: 1; color: var(--royal-2); font-variant-numeric: tabular-nums; }
+.stat .lbl { font-weight: 800; color: #4a4470; font-size: .98rem; margin-top: 6px; }
+
+.tilt { transform-style: preserve-3d; transition: transform .25s ease-out; will-change: transform; }
+.tilt .glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .45), transparent 45%); opacity: 0; transition: opacity .25s; mix-blend-mode: soft-light; }
+.tilt:hover .glare { opacity: 1; }
+
+.why { padding: 120px 0 100px; position: relative; }
+.section-title { text-align: center; font-size: clamp(2.4rem, 5.4vw, 4rem); margin: 0 0 16px; }
+.section-sub { text-align: center; max-width: 560px; margin: 0 auto 60px; color: var(--muted); font-weight: 700; font-size: 1.1rem; }
+.pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.pillar { position: relative; display: grid; grid-template-columns: 96px 1fr; gap: 22px; align-items: start; padding: 30px; border-radius: 28px; background: linear-gradient(160deg, var(--navy-2), #100c48); border: 3px solid rgba(255, 255, 255, .9); box-shadow: 0 8px 0 var(--shadow), 0 24px 40px -18px rgba(0, 0, 0, .6); }
+.pillar .badge { width: 96px; height: 96px; border-radius: 26px; display: grid; place-items: center; border: 4px solid var(--white); box-shadow: 0 6px 0 var(--shadow); transition: rotate .4s cubic-bezier(.34, 1.56, .64, 1); }
+.pillar:hover .badge { rotate: -10deg; }
+.pillar .badge svg { width: 46px; height: 46px; }
+.badge.gd { background: linear-gradient(180deg, var(--gold-hi), var(--gold) 45%, var(--gold-deep)); color: #2a1b00; }
+.badge.bl { background: linear-gradient(180deg, var(--royal-hi), var(--royal) 50%, var(--royal-2)); color: var(--white); }
+.pillar h3 { font-family: var(--display); font-weight: 400; font-size: 1.9rem; margin: 2px 0 8px; letter-spacing: .01em; line-height: 1.05; }
+.pillar p { margin: 0; color: var(--muted); font-weight: 600; }
+
+.play { padding: 40px 0 120px; }
+.play-card { position: relative; border-radius: 34px; padding: 50px; background: radial-gradient(600px 300px at 80% 0%, rgba(255, 216, 74, .25), transparent 70%), linear-gradient(160deg, var(--royal), var(--royal-2)); border: 4px solid var(--white); box-shadow: 0 10px 0 var(--shadow), 0 40px 60px -24px rgba(0, 0, 0, .7); display: grid; grid-template-columns: .85fr 1.15fr; gap: 44px; align-items: center; }
+.play-card h2 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); margin: 0 0 14px; }
+.play-card > div > p { color: #dfe2ff; font-weight: 700; margin: 0 0 26px; }
+.toggles { display: grid; gap: 12px; }
+.tg { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 18px; background: rgba(7, 5, 42, .28); border: 2px solid rgba(255, 255, 255, .2); cursor: pointer; transition: background .2s, border-color .2s; font-weight: 800; }
+.tg:hover { background: rgba(7, 5, 42, .4); }
+.tg:has(input:checked) { border-color: var(--gold); background: rgba(255, 216, 74, .12); }
+.tg .lbl { flex: 1; }
+.tg small { display: block; font-weight: 600; color: #c7cbf5; font-size: .82rem; }
+
+.app { position: relative; background: #313338; border-radius: 22px; border: 4px solid var(--white); overflow: hidden; display: grid; grid-template-columns: 64px 1fr; height: 440px; box-shadow: 0 10px 0 var(--shadow); transition: background .4s; }
+.app-g { background: #1e1f22; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px 0; transition: background .4s; }
+.app-g img { width: 42px; height: 42px; }
+.app-g span { width: 42px; height: 42px; border-radius: 50%; background: #3a3c43; transition: border-radius .3s, background .4s; }
+.app-g span:hover { border-radius: 14px; }
+.app-g span.on { border-radius: 14px; background: #5865f2; }
+.app-m { display: flex; flex-direction: column; min-width: 0; position: relative; }
+.app-top { height: 52px; border-bottom: 1px solid rgba(0, 0, 0, .25); display: flex; align-items: center; padding: 0 18px; font-weight: 800; color: #f2f3f5; gap: 8px; }
+.island { position: absolute; top: 10px; left: 50%; translate: -50% -80px; display: flex; align-items: center; gap: 10px; background: #000; color: #fff; border-radius: 999px; padding: 6px 14px 6px 6px; font-size: 12.5px; font-weight: 800; box-shadow: 0 8px 20px rgba(0, 0, 0, .5); transition: translate .5s cubic-bezier(.34, 1.56, .64, 1); z-index: 2; white-space: nowrap; }
+.app.island-on .island { translate: -50% 0; }
+.island i { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-deep)); }
+.bars { display: flex; gap: 2px; align-items: end; height: 12px; }
+.bars b { width: 3px; background: var(--online); border-radius: 2px; animation: eq 1s ease-in-out infinite; }
+.bars b:nth-child(2) { animation-delay: -.3s; } .bars b:nth-child(3) { animation-delay: -.6s; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 12px; } }
+.app-msgs { flex: 1; padding: 14px 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; }
+.m { display: grid; grid-template-columns: 42px 1fr; gap: 12px; padding: 7px 18px; font-size: 14.5px; animation: msgIn .4s cubic-bezier(.34, 1.56, .64, 1) backwards; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(12px); } }
+.m .av { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; color: #fff; }
+.m .n { font-weight: 800; color: #f2f3f5; display: flex; gap: 8px; align-items: center; }
+.m .n small { font-weight: 600; color: #949ba4; font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.m .t { color: #dbdee1; }
+.m .tr { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .35s, opacity .35s, margin .35s; margin-top: 0; }
+.m .tr > div { overflow: hidden; }
+.m .tr > div > div { padding: 6px 10px; border-left: 3px solid var(--gold); background: rgba(255, 216, 74, .1); border-radius: 0 8px 8px 0; font-size: 13px; color: #ffe9a3; }
+.m .tr small { display: block; font-size: 10.5px; font-weight: 900; letter-spacing: .08em; color: var(--gold); }
+.app.tr-on .m .tr { grid-template-rows: 1fr; opacity: 1; margin-top: 6px; }
+.app-bar { margin: 0 18px 16px; height: 46px; border-radius: 12px; background: #383a40; display: flex; align-items: center; padding: 0 14px; color: #6d717b; gap: 10px; font-size: 14px; transition: background .4s; }
+.app-bar span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.app-bar i { width: 24px; height: 24px; border-radius: 7px; background: #4e5058; transition: background .4s; }
+.app.theme-on { background: linear-gradient(170deg, #1c1670, #0f0b45); }
+.app.theme-on .app-g { background: #0c0a3a; }
+.app.theme-on .app-g span.on { background: var(--gold); }
+.app.theme-on .app-bar { background: rgba(255, 255, 255, .08); }
+.app.theme-on .app-bar i:first-of-type { background: var(--gold); }
+.app.theme-on .m .t { color: #e6e8ff; }
+
+.community { padding: 10px 0 120px; }
+.comm-card { display: grid; grid-template-columns: auto 1fr auto; gap: 36px; align-items: center; background: var(--white); color: #1d1a3d; border-radius: 34px; padding: 40px 44px; border: 4px solid var(--white); box-shadow: 0 10px 0 var(--royal-2), 0 40px 60px -24px rgba(0, 0, 0, .7); position: relative; }
+.comm-card .dc { width: 110px; height: 110px; border-radius: 30px; background: #5865f2; display: grid; place-items: center; border: 4px solid var(--white); box-shadow: 0 6px 0 #3a44b8; rotate: -6deg; transition: rotate .4s cubic-bezier(.34, 1.56, .64, 1); }
+.comm-card:hover .dc { rotate: 8deg; }
+.comm-card .dc svg { width: 62px; height: 62px; color: #fff; }
+.comm-card h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 3.6vw, 2.8rem); margin: 0 0 8px; line-height: 1.02; color: var(--royal-2); }
+.comm-card p { margin: 0 0 14px; color: #4a4470; font-weight: 700; }
+.presence { display: flex; flex-wrap: wrap; gap: 18px; font-weight: 800; }
+.presence span { display: inline-flex; gap: 8px; align-items: center; }
+.presence b { font-variant-numeric: tabular-nums; }
+.presence .off { width: 9px; height: 9px; border-radius: 50%; background: #9a96b8; }
+
+.final { text-align: center; padding: 40px 0 120px; }
+.final .mini { width: 170px; height: 170px; margin: 0 auto; animation: float 6s ease-in-out infinite; filter: drop-shadow(0 20px 30px rgba(7, 5, 42, .6)); }
+.final h2 { font-size: clamp(2.8rem, 7vw, 5.4rem); margin: 14px 0 16px; }
+.final p { color: var(--muted); font-weight: 700; margin: 0 auto 34px; max-width: 480px; padding: 0 8px; }
+
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 80; }
+
+.pop { opacity: 0; translate: 0 30px; scale: .96; transition: opacity .6s cubic-bezier(.2, .8, .2, 1), translate .7s cubic-bezier(.34, 1.56, .64, 1), scale .7s cubic-bezier(.34, 1.56, .64, 1); }
+.pop.in { opacity: 1; translate: 0 0; scale: 1; }
+
+@media (max-width: 1100px) { .cs1, .cs3 { left: -22%; } .cs2, .cs4 { right: -20%; } }
+@media (max-width: 960px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); row-gap: 56px; }
+  .pillars { grid-template-columns: 1fr; }
+  .play-card { grid-template-columns: 1fr; padding: 36px 24px; }
+  .comm-card { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 36px 24px; }
+  .presence { justify-content: center; }
+}
+@media (max-width: 720px) {
+  .chip-sticker { font-size: .92rem; padding: 6px 11px; border-width: 2.5px; }
+  .cs1 { top: 2%; left: -6%; } .cs2 { top: 0; right: -6%; } .cs3 { bottom: 6%; left: -8%; } .cs4 { bottom: 2%; right: -6%; }
+  .ribbon span { font-size: 1.2rem; padding: 10px 16px; }
+}
+@media (max-width: 560px) {
+  .btn { height: 54px; padding: 0 22px; font-size: 1rem; }
+  .cta { flex-direction: column; padding: 0 8px; }
+  .cta .btn { width: 100%; }
+  .stat-grid { grid-template-columns: 1fr 1fr; gap: 50px 14px; }
+  .stat { padding: 22px 10px 18px; border-radius: 20px; }
+  .stat .ic { width: 50px; height: 50px; margin-top: -46px; border-radius: 15px; }
+  .stat .lbl { font-size: .86rem; line-height: 1.3; }
+  .pillar { grid-template-columns: 1fr; padding: 26px 22px; }
+  .pillar .badge { width: 78px; height: 78px; }
+  .app { grid-template-columns: 1fr; height: 420px; }
+  .app-g { display: none; }
+  .why { padding: 100px 0 80px; }
+  .play, .community { padding-bottom: 80px; }
+  .comm-card .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .pop { opacity: 1; translate: none; scale: none; } }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<nav class="top" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.png" alt="">Zenkord</a>
+    <div class="nav-links">
+      <a href="#pourquoi">Pourquoi Zenkord</a>
+      <a href="#essaie">Essaie-le</a>
+      <a href="#communaute">Communauté</a>
+    </div>
+    <a class="btn small" href="https://github.com/xeen28170-rgb/zenkord/releases/latest" data-confetti>Télécharger</a>
+  </div>
+</nav>
+
+<main>
+<header class="hero" id="top">
+  <div class="rays" aria-hidden="true"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
+  <div class="logo-stage" id="logoStage">
+    <span class="chip-sticker gold cs1" data-drag>380+ plugins</span>
+    <span class="chip-sticker blue cs2" data-drag>100% gratuit</span>
+    <span class="chip-sticker white cs3" data-drag>Open source</span>
+    <span class="chip-sticker gold cs4" data-drag>Ultra rapide</span>
+    <button class="logo-btn" id="logoBtn" type="button" aria-label="Logo Zenkord, clique pour une surprise">
+      <img src="logo-hero.png" alt="" width="1024" height="1024">
+    </button>
+    <span class="logo-hint" aria-hidden="true">✦ clique-moi ✦</span>
+  </div>
+
+  <div class="wrap">
+    <h1 class="sticker-text" id="title" aria-label="Ton Discord, en mieux."><span data-split>Ton Discord,</span><br><span class="g" data-split>en mieux.</span></h1>
+    <p class="sub">Zenkord transforme ton Discord : <b>plus rapide</b>, <b>plus beau</b> et bourré de fonctionnalités que Discord n'a jamais osé ajouter. Gratuit, open source, et prêt en une minute.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/xeen28170-rgb/zenkord/releases/latest" data-magnet data-confetti>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
+        Télécharger Zenkord
+      </a>
+      <a class="btn blue" href="https://discord.gg/X3GpHjUNBd" data-magnet>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19.7 19.7 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.6 19.6 0 0 0-4.9 1.4C.6 9 .1 13.5.3 18a19.8 19.8 0 0 0 6 3l1.3-2a12.8 12.8 0 0 1-2-1l.5-.4a14.1 14.1 0 0 0 12 0l.5.4-2 1 1.3 2a19.7 19.7 0 0 0 6-3c.4-5.2-.8-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>
+        Rejoindre le Discord
+      </a>
+    </div>
+    <div class="live" aria-live="polite">
+      <span><i class="dot" data-dot></i><b data-live="downloads">…</b>&nbsp;téléchargements</span>
+      <span><i class="dot" data-dot></i><b data-live="users">…</b>&nbsp;utilisent Zenkord en ce moment</span>
+      <span>Version&nbsp;<b data-live="version">…</b></span>
+    </div>
+    <span class="live-mode" id="liveMode"></span>
+  </div>
+</header>
+
+<div class="ribbon" aria-hidden="true"><div><span>Plus rapide</span><span>Plus beau</span><span>Mises à jour vérifiées</span><span>100% gratuit</span><span>Open source</span><span>380+ plugins</span><span>Plus rapide</span><span>Plus beau</span><span>Mises à jour vérifiées</span><span>100% gratuit</span><span>Open source</span><span>380+ plugins</span></div></div>
+<div class="ribbon b" aria-hidden="true"><div><span>Zenkord</span><span>Ton Discord en mieux</span><span>Zenkord</span><span>Ton Discord en mieux</span><span>Zenkord</span><span>Ton Discord en mieux</span><span>Zenkord</span><span>Ton Discord en mieux</span></div></div>
+
+<section class="stats" id="chiffres">
+  <div class="wrap">
+    <h2 class="sticker-text">Zenkord en chiffres</h2>
+    <p class="note" id="statsNote">Mis à jour automatiquement.</p>
+    <div class="stat-grid">
+      <div class="stat tilt pop"><span class="glare"></span>
+        <div class="ic bl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg></div>
+        <div class="num" data-live="downloads">…</div><div class="lbl">téléchargements</div>
+      </div>
+      <div class="stat tilt pop"><span class="glare"></span>
+        <div class="ic gd"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="6"/></svg></div>
+        <div class="num" data-live="users">…</div><div class="lbl">utilisent Zenkord en ce moment</div>
+      </div>
+      <div class="stat tilt pop"><span class="glare"></span>
+        <div class="ic bl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M17 11a3 3 0 1 0 0-6M22 21c0-3-1.5-5-4-5.6"/></svg></div>
+        <div class="num" data-live="members">…</div><div class="lbl">membres de la communauté</div>
+      </div>
+      <div class="stat tilt pop"><span class="glare"></span>
+        <div class="ic gd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+        <div class="num" data-live="peak">…</div><div class="lbl">record d'utilisateurs simultanés</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="pourquoi">
+  <div class="wrap">
+    <h2 class="section-title sticker-text">Pourquoi <span class="g">Zenkord</span> ?</h2>
+    <p class="section-sub">Parce que Discord mérite mieux que ce qu'on te donne par défaut.</p>
+    <div class="pillars">
+      <article class="pillar tilt pop"><span class="glare"></span>
+        <div class="badge gd"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+        <div><h3>Rapide comme l'éclair</h3><p>Aucun code obfusqué, aucun poids inutile. Discord démarre plus vite et consomme moins de mémoire, même avec des dizaines de plugins actifs.</p></div>
+      </article>
+      <article class="pillar tilt pop"><span class="glare"></span>
+        <div class="badge bl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 13.6-3.5-3.5 1.4-1.4 2.1 2.1 4.8-4.8 1.4 1.4-6.2 6.2Z"/></svg></div>
+        <div><h3>Sûr, vraiment</h3><p>Chaque mise à jour est vérifiée par empreinte SHA-256 avant d'être installée. Un fichier modifié en route est rejeté, point.</p></div>
+      </article>
+      <article class="pillar tilt pop"><span class="glare"></span>
+        <div class="badge bl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a9 9 0 0 0 0 18c.8 0 1.5-.7 1.5-1.5 0-.4-.2-.7-.4-1-.2-.3-.4-.6-.4-1 0-.8.7-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-4.4-4-8-9-8Zm-5.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"/></svg></div>
+        <div><h3>À ton image</h3><p>Fonds d'écran animés, thèmes, Dynamic Island, curseurs macOS… Ton Discord ne ressemblera plus jamais à celui des autres.</p></div>
+      </article>
+      <article class="pillar tilt pop"><span class="glare"></span>
+        <div class="badge gd"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C1 8.6 3 5 6.6 5c2 0 3.4 1 4.4 2.4C12 6 13.4 5 15.4 5 19 5 21 8.6 19.6 11.8 17.5 16.4 12 21 12 21Z"/></svg></div>
+        <div><h3>Libre et gratuit</h3><p>100 % gratuit et open source. Le code est public : tu sais exactement ce qui tourne sur ton PC. Pas de pub, pas d'abonnement.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="play" id="essaie">
+  <div class="wrap">
+    <div class="play-card pop">
+      <div>
+        <h2 class="sticker-text">Essaie-le <span class="g">ici.</span></h2>
+        <p>Active les options et regarde ton Discord se transformer en direct. Aucune installation nécessaire pour jouer.</p>
+        <div class="toggles">
+          <label class="tg"><span class="switch"><input type="checkbox" data-app="tr-on" checked><span></span></span><span class="lbl">Traduction instantanée<small>Les messages étrangers traduits sous tes yeux</small></span></label>
+          <label class="tg"><span class="switch"><input type="checkbox" data-app="clock"><span></span></span><span class="lbl">Heure à la seconde<small>L'horloge des messages en direct</small></span></label>
+          <label class="tg"><span class="switch"><input type="checkbox" data-app="island-on"><span></span></span><span class="lbl">Dynamic Island<small>Ta musique et tes appels en un coup d'œil</small></span></label>
+          <label class="tg"><span class="switch"><input type="checkbox" data-app="theme-on"><span></span></span><span class="lbl">Thème Zenkord<small>Les couleurs du logo, partout</small></span></label>
+        </div>
+      </div>
+      <div class="app tr-on" id="app" role="img" aria-label="Simulation de Discord avec Zenkord">
+        <div class="app-g"><img src="logo.png" alt=""><span class="on"></span><span></span><span></span></div>
+        <div class="app-m">
+          <div class="island"><i></i>Lofi Mix · en lecture<div class="bars"><b></b><b></b><b></b></div></div>
+          <div class="app-top"># général</div>
+          <div class="app-msgs" id="msgs">
+            <div class="m"><div class="av" style="background:var(--gold-deep)">M</div><div><div class="n">Maëlys <small data-clock="-94">15:32</small></div><div class="t">Le nouveau thème est trop beau 😍</div></div></div>
+            <div class="m"><div class="av" style="background:#e0457b">D</div><div><div class="n">Diego <small data-clock="-41">15:33</small></div><div class="t">¿Alguien para jugar esta noche?</div><div class="tr"><div><div><small>TRADUIT DE L'ESPAGNOL</small>Quelqu'un pour jouer ce soir ?</div></div></div></div></div>
+            <div class="m"><div class="av" style="background:var(--royal)">T</div><div><div class="n">Toi <small data-clock="0">15:34</small></div><div class="t">Carrément, je lance le vocal 🎮</div></div></div>
+          </div>
+          <div class="app-bar"><span>Envoyer un message dans #général</span><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="community" id="communaute">
+  <div class="wrap">
+    <div class="comm-card tilt pop"><span class="glare"></span>
+      <div class="dc"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19.7 19.7 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.6 19.6 0 0 0-4.9 1.4C.6 9 .1 13.5.3 18a19.8 19.8 0 0 0 6 3l1.3-2a12.8 12.8 0 0 1-2-1l.5-.4a14.1 14.1 0 0 0 12 0l.5.4-2 1 1.3 2a19.7 19.7 0 0 0 6-3c.4-5.2-.8-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg></div>
+      <div>
+        <h2>Rejoins la communauté</h2>
+        <p>Aide, nouveautés en avant-première, idées de fonctionnalités : tout se passe sur le Discord.</p>
+        <div class="presence">
+          <span><i class="dot" data-dot></i><b data-live="online">…</b>&nbsp;en ligne</span>
+          <span><i class="off"></i><b data-live="members">…</b>&nbsp;membres</span>
+        </div>
+      </div>
+      <a class="btn blue" href="https://discord.gg/X3GpHjUNBd" data-magnet>Rejoindre</a>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <img class="mini" src="logo-hero.png" alt="" width="1024" height="1024">
+  <h2 class="sticker-text">Prêt à passer<br>à <span class="g">Zenkord</span> ?</h2>
+  <p>Une minute d'installation, et ton Discord ne sera plus jamais le même.</p>
+  <div class="cta">
+    <a class="btn" href="https://github.com/xeen28170-rgb/zenkord/releases/latest" data-magnet data-confetti>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
+      Télécharger gratuitement
+    </a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.png" alt="">Zenkord</a>
+    <div class="links">
+      <a href="https://github.com/xeen28170-rgb/zenkord">GitHub</a>
+      <a href="https://discord.gg/X3GpHjUNBd">Discord</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <button type="button" data-open-consent>Gérer les cookies</button>
+    </div>
+    <p>Zenkord est un logiciel libre (GPL-3.0), fork d'Equicord et de Vencord, fourni sans aucune garantie. Projet indépendant, non affilié à Discord Inc. « Discord » est une marque de Discord Inc. Les clients modifiés ne sont pas autorisés par les conditions d'utilisation de Discord : utilise Zenkord en connaissance de cause.</p>
+  </div>
+</footer>
+
+<script src="consent.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

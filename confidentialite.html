@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidentialité · Zenkord</title>
+<meta name="description" content="Politique de confidentialité et de cookies du site Zenkord.">
+<meta name="theme-color" content="#140f5c">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="top scrolled">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="logo.png" alt="">Zenkord</a>
+    <a class="btn small" href="./" style="margin-left:auto">← Retour au site</a>
+  </div>
+</nav>
+
+<main class="legal">
+  <div class="wrap">
+    <h1 class="sticker-text">Confidentialité <span class="g">&amp; cookies</span></h1>
+    <p class="updated">Dernière mise à jour : 30 septembre 2026</p>
+
+    <section>
+      <h2>En résumé</h2>
+      <ul>
+        <li>Aucune publicité, aucune mesure d'audience, aucun traceur.</li>
+        <li>Aucun compte, aucun formulaire : le site ne te demande aucune donnée.</li>
+        <li>Les polices et les chiffres sont servis depuis le site lui-même, sans appel à un service tiers par défaut.</li>
+        <li>Les compteurs en temps réel ne s'activent que si tu l'acceptes.</li>
+        <li>Le compteur d'utilisateurs de Zenkord est anonyme et désactivable dans le logiciel.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Responsable du traitement</h2>
+      <p>L'éditeur du site, décrit dans les <a href="mentions-legales.html">mentions légales</a>. Pour toute question ou pour exercer tes droits, contacte-le via le <a href="https://discord.gg/X3GpHjUNBd">serveur Discord officiel</a> ou sur le <a href="https://github.com/xeen28170-rgb/zenkord/issues">dépôt GitHub</a>.</p>
+    </section>
+
+    <section>
+      <h2>Données traitées</h2>
+      <div class="table-scroll">
+      <table>
+        <thead><tr><th>Quoi</th><th>Pourquoi</th><th>Base légale</th><th>Durée</th></tr></thead>
+        <tbody>
+          <tr><td>Journaux techniques de l'hébergeur (adresse IP, date, page demandée)</td><td>Afficher le site et le protéger contre les abus</td><td>Intérêt légitime (art. 6.1.f RGPD)</td><td>Selon la politique de GitHub</td></tr>
+          <tr><td>Ton choix de consentement, stocké dans ton navigateur (clé <code>zk-consent</code>)</td><td>Mémoriser ton choix pour ne pas te le redemander</td><td>Stockage strictement nécessaire (art. 82 loi Informatique et Libertés)</td><td>6 mois, puis nouvelle demande</td></tr>
+          <tr><td>Adresse IP transmise à GitHub, Discord et Cloudflare, <b>uniquement si tu acceptes les contenus en direct</b></td><td>Afficher les téléchargements, les utilisateurs et les membres en temps réel</td><td>Consentement (art. 6.1.a RGPD)</td><td>Selon les politiques de GitHub et de Discord</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Le site ne dépose <b>aucun cookie</b> au sens strict. Il utilise uniquement le stockage local de ton navigateur pour retenir ton choix.</p>
+    </section>
+
+    <section>
+      <h2>Services tiers et transferts hors UE</h2>
+      <h3>GitHub Pages (hébergement)</h3>
+      <p>Le site est hébergé par GitHub, Inc., société établie aux États-Unis, qui traite les journaux techniques nécessaires à l'affichage du site. Voir la <a href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement">déclaration de confidentialité de GitHub</a>.</p>
+      <h3>Contenus en direct (optionnel)</h3>
+      <p>Si tu les acceptes, ton navigateur interroge directement <code>api.github.com</code> (GitHub, Inc.), <code>discord.com</code> (Discord Inc.) et <code>zenkord-counter.zenkord.workers.dev</code> (compteur Zenkord hébergé par Cloudflare, Inc.), trois sociétés établies aux États-Unis. Ces transferts reposent sur les garanties mises en place par ces sociétés, notamment le cadre de protection des données UE–États-Unis (Data Privacy Framework) ou des clauses contractuelles types. Voir la <a href="https://discord.com/privacy">politique de confidentialité de Discord</a>.</p>
+      <p>Si tu refuses, ces services ne sont jamais contactés par ton navigateur. Les chiffres affichés proviennent alors d'un fichier mis à jour toutes les 10 minutes par un robot sur les serveurs de GitHub, sans aucune donnée te concernant.</p>
+      <h3>Liens sortants</h3>
+      <p>Lorsque tu cliques sur un lien vers Discord ou GitHub, tu quittes le site. Ces services appliquent alors leurs propres règles.</p>
+    </section>
+
+    <section>
+      <h2>Tes droits</h2>
+      <p>Conformément au RGPD et à la loi Informatique et Libertés, tu disposes d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de retrait de ton consentement à tout moment, sans que cela remette en cause la licéité des traitements déjà effectués.</p>
+      <p>Pour retirer ou modifier ton consentement : <button type="button" data-open-consent class="btn small white" style="margin-top:6px">Gérer les cookies</button></p>
+      <p>Tu peux aussi supprimer à tout moment les données de ce site depuis les réglages de ton navigateur.</p>
+      <p>Si tu estimes que tes droits ne sont pas respectés, tu peux introduire une réclamation auprès de la <a href="https://www.cnil.fr/fr/plaintes">CNIL</a>.</p>
+    </section>
+
+    <section>
+      <h2>Le logiciel Zenkord</h2>
+      <p>Le logiciel Zenkord, une fois installé, vérifie la présence de mises à jour en contactant GitHub.</p>
+      <h3>Compteur d'utilisateurs anonyme</h3>
+      <p>Pour afficher le nombre de personnes qui utilisent Zenkord, le logiciel envoie toutes les 5 minutes, tant qu'il est ouvert, un <b>identifiant aléatoire recréé à chaque lancement</b> au compteur Zenkord (Cloudflare). Aucun compte Discord, pseudo, message ni donnée d'appareil n'est envoyé, et l'identifiant ne permet pas de te reconnaître d'une session à l'autre.</p>
+      <p>Pour limiter les abus, le compteur calcule une empreinte de ton adresse IP salée avec une valeur aléatoire renouvelée chaque jour. Ni l'adresse IP ni l'identifiant ne sont conservés plus de 6 minutes. Seuls le nombre d'utilisateurs en ligne et le record sont gardés.</p>
+      <p>Base légale : intérêt légitime à mesurer l'audience du logiciel de façon strictement anonyme et agrégée. Tu peux t'y opposer à tout moment en désactivant « Me compter anonymement dans le compteur d'utilisateurs Zenkord » dans les réglages de Zenkord.</p>
+      <p> Certaines fonctionnalités optionnelles du logiciel (par exemple l'IA intégrée ou la traduction) font appel à des services tiers que tu choisis d'activer toi-même dans ses réglages.</p>
+    </section>
+
+    <section>
+      <h2>Modifications</h2>
+      <p>Cette politique peut évoluer. La date de dernière mise à jour figure en haut de la page.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="logo.png" alt="">Zenkord</a>
+    <div class="links">
+      <a href="./">Accueil</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <button type="button" data-open-consent>Gérer les cookies</button>
+    </div>
+  </div>
+</footer>
+<script src="consent.js"></script>
+</body>
+</html>
