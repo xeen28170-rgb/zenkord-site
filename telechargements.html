@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toutes les versions · Zenkord</title>
+<meta name="description" content="Télécharge Zenkord pour Windows, macOS ou ton navigateur, et retrouve toutes les versions publiées.">
+<meta name="theme-color" content="#140f5c">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<style>
+.page { padding: 40px 0 100px; }
+.page .wrap { max-width: 960px; }
+.page h1 { font-size: clamp(2.6rem, 7vw, 4.4rem); margin: 20px 0 10px; }
+.page .lead { color: var(--muted); font-weight: 700; margin: 0 0 36px; font-size: 1.1rem; }
+.page h2.block { font-family: var(--display); font-weight: 400; font-size: 2rem; color: var(--gold); margin: 60px 0 20px; letter-spacing: .01em; }
+</style>
+</head>
+<body>
+<nav class="top scrolled">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="logo.png" alt="">Zenkord</a>
+    <a class="btn small" href="./" style="margin-left:auto">← Retour au site</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="wrap">
+    <h1 class="sticker-text">Toutes les <span class="g">versions</span></h1>
+    <p class="lead">La dernière version est recommandée. Les anciennes restent disponibles si tu en as besoin.</p>
+
+    <div class="dl-grid" id="dlCards"></div>
+    <p class="dl-note">Sur Windows, SmartScreen peut afficher « Windows a protégé votre ordinateur » car l'installeur n'est pas signé : clique sur <b>Informations complémentaires</b> puis <b>Exécuter quand même</b>. L'installeur a besoin de .NET 8 : Windows te propose de l'installer si nécessaire. Chaque installation est vérifiée par SHA-256 avant d'être appliquée.</p>
+
+    <h2 class="block">Historique des versions</h2>
+    <div id="history"><p class="dl-empty">Chargement…</p></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="logo.png" alt="">Zenkord</a>
+    <div class="links">
+      <a href="./">Accueil</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+      <button type="button" data-open-consent>Gérer les cookies</button>
+    </div>
+    <p>Zenkord est un logiciel libre (GPL-3.0), fourni sans aucune garantie. Projet indépendant, non affilié à Discord Inc.</p>
+  </div>
+</footer>
+<script src="consent.js"></script>
+<script src="downloads.js"></script>
+</body>
+</html>

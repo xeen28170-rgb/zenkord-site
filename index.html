@@ -143,6 +143,7 @@
 .app.theme-on .app-bar i:first-of-type { background: var(--gold); }
 .app.theme-on .m .t { color: #e6e8ff; }
 
+.downloads { padding: 10px 0 110px; }
 .community { padding: 10px 0 120px; }
 .comm-card { display: grid; grid-template-columns: auto 1fr auto; gap: 36px; align-items: center; background: var(--white); color: #1d1a3d; border-radius: 34px; padding: 40px 44px; border: 4px solid var(--white); box-shadow: 0 10px 0 var(--royal-2), 0 40px 60px -24px rgba(0, 0, 0, .7); position: relative; }
 .comm-card .dc { width: 110px; height: 110px; border-radius: 30px; background: #5865f2; display: grid; place-items: center; border: 4px solid var(--white); box-shadow: 0 6px 0 #3a44b8; rotate: -6deg; transition: rotate .4s cubic-bezier(.34, 1.56, .64, 1); }
@@ -208,8 +209,9 @@
       <a href="#pourquoi">Pourquoi Zenkord</a>
       <a href="#essaie">Essaie-le</a>
       <a href="#communaute">Communauté</a>
+      <a href="telechargements.html">Versions</a>
     </div>
-    <a class="btn small" href="https://github.com/xeen28170-rgb/zenkord/releases/latest" data-confetti>Télécharger</a>
+    <a class="btn small" href="#telecharger">Télécharger</a>
   </div>
 </nav>
 
@@ -233,7 +235,7 @@
     <h1 class="sticker-text" id="title" aria-label="Ton Discord, en mieux."><span data-split>Ton Discord,</span><br><span class="g" data-split>en mieux.</span></h1>
     <p class="sub">Zenkord transforme ton Discord : <b>plus rapide</b>, <b>plus beau</b> et bourré de fonctionnalités que Discord n'a jamais osé ajouter. Gratuit, open source, et prêt en une minute.</p>
     <div class="cta">
-      <a class="btn" href="https://github.com/xeen28170-rgb/zenkord/releases/latest" data-magnet data-confetti>
+      <a class="btn" href="#telecharger" data-magnet>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
         Télécharger Zenkord
       </a>
@@ -334,6 +336,15 @@
   </div>
 </section>
 
+<section class="downloads" id="telecharger">
+  <div class="wrap">
+    <h2 class="section-title sticker-text">Télécharge <span class="g">Zenkord</span></h2>
+    <p class="section-sub">Gratuit, sans compte, sans pub. Choisis ta plateforme.</p>
+    <div class="dl-grid pop" id="dlCards"></div>
+    <p class="dl-note">Sur Windows, SmartScreen peut afficher « Windows a protégé votre ordinateur » car l'installeur n'est pas signé : clique sur <b>Informations complémentaires</b> puis <b>Exécuter quand même</b>. L'installeur a besoin de .NET 8 : Windows te propose de l'installer si nécessaire. Chaque installation est vérifiée par SHA-256. <a href="telechargements.html">Voir toutes les versions</a></p>
+  </div>
+</section>
+
 <section class="community" id="communaute">
   <div class="wrap">
     <div class="comm-card tilt pop"><span class="glare"></span>
@@ -356,7 +367,7 @@
   <h2 class="sticker-text">Prêt à passer<br>à <span class="g">Zenkord</span> ?</h2>
   <p>Une minute d'installation, et ton Discord ne sera plus jamais le même.</p>
   <div class="cta">
-    <a class="btn" href="https://github.com/xeen28170-rgb/zenkord/releases/latest" data-magnet data-confetti>
+    <a class="btn" href="#telecharger" data-magnet>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
       Télécharger gratuitement
     </a>
@@ -370,6 +381,7 @@
     <div class="links">
       <a href="https://github.com/xeen28170-rgb/zenkord">GitHub</a>
       <a href="https://discord.gg/X3GpHjUNBd">Discord</a>
+      <a href="telechargements.html">Toutes les versions</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="confidentialite.html">Confidentialité</a>
       <button type="button" data-open-consent>Gérer les cookies</button>
@@ -379,6 +391,7 @@
 </footer>
 
 <script src="consent.js"></script>
+<script src="downloads.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

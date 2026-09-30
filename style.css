@@ -130,3 +130,54 @@ footer p { margin: 0; flex-basis: 100%; font-size: .82rem; line-height: 1.55; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Downloads */
+.dl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.dl-card { position: relative; display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 22px; background: var(--white); color: #1d1a3d; border: 4px solid var(--white); box-shadow: 0 7px 0 var(--royal-2), 0 20px 30px -14px rgba(0, 0, 0, .6); transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s; }
+a.dl-card:hover { transform: translateY(-4px) rotate(-.6deg); box-shadow: 0 11px 0 var(--royal-2), 0 26px 36px -14px rgba(0, 0, 0, .6); }
+a.dl-card:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--royal-2); }
+.dl-card.main { grid-column: span 3; background: linear-gradient(180deg, var(--gold-hi), var(--gold) 55%, var(--gold-deep)); box-shadow: 0 8px 0 var(--gold-side), 0 24px 36px -14px rgba(0, 0, 0, .6); padding: 26px 28px; }
+a.dl-card.main:hover { box-shadow: 0 12px 0 var(--gold-side), 0 30px 40px -14px rgba(0, 0, 0, .6); }
+.dl-card.off { opacity: .55; filter: grayscale(.4); }
+.dl-ic { width: 56px; height: 56px; flex: none; border-radius: 16px; display: grid; place-items: center; background: var(--royal); color: var(--white); border: 3px solid var(--white); box-shadow: 0 4px 0 var(--royal-2); }
+.dl-card.main .dl-ic { width: 72px; height: 72px; border-radius: 20px; }
+.dl-ic svg { width: 28px; height: 28px; }
+.dl-card.main .dl-ic svg { width: 38px; height: 38px; }
+.dl-txt { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.dl-txt b { font-family: var(--display); font-weight: 400; font-size: 1.35rem; letter-spacing: .01em; }
+.dl-card.main .dl-txt b { font-size: 2rem; }
+.dl-txt small { font-weight: 800; color: #5a5480; }
+.dl-card.main .dl-txt small { color: #5c4300; font-size: 1rem; }
+.dl-txt em { font-style: normal; font-weight: 700; font-size: .82rem; color: #8a84ad; margin-top: 4px; }
+.dl-card.main .dl-txt em { color: #7a5c00; }
+.dl-badge { margin-left: auto; font-family: var(--display); font-size: 1rem; padding: 6px 14px; border-radius: 12px; background: var(--royal); color: var(--white); border: 3px solid var(--white); box-shadow: 0 4px 0 var(--royal-2); rotate: 4deg; white-space: nowrap; }
+.dl-note { margin: 22px auto 0; max-width: 720px; text-align: center; color: var(--muted); font-weight: 700; font-size: .92rem; }
+.dl-note a { color: var(--gold); text-decoration: underline; }
+.dl-empty { color: var(--muted); font-weight: 700; }
+
+.rel { background: var(--navy-2); border: 3px solid rgba(255, 255, 255, .85); border-radius: 24px; padding: 24px 26px; margin-bottom: 20px; box-shadow: 0 6px 0 var(--shadow); }
+.rel header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 14px; }
+.rel h2 { font-family: var(--display); font-weight: 400; font-size: 1.7rem; margin: 0; color: var(--white); letter-spacing: .01em; }
+.rel time { margin-left: auto; color: var(--muted); font-weight: 700; font-size: .92rem; }
+.tag { font-weight: 900; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+.tag.new { background: var(--gold); color: #2a1b00; }
+.tag.pre { background: rgba(255, 255, 255, .12); color: var(--muted); }
+.rel ul { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 8px; }
+.rel li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 10px 14px; border-radius: 12px; background: rgba(7, 5, 42, .35); }
+.rel li a { color: var(--gold); font-weight: 800; word-break: break-all; }
+.rel li a:hover { text-decoration: underline; }
+.rel li span { color: var(--muted); font-weight: 700; font-size: .88rem; }
+.rel-notes { color: var(--muted); font-weight: 800; font-size: .9rem; }
+.rel-notes:hover { color: var(--white); }
+
+@media (max-width: 860px) {
+  .dl-grid { grid-template-columns: 1fr 1fr; }
+  .dl-card.main { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .dl-grid { grid-template-columns: 1fr; }
+  .dl-card.main { grid-column: auto; flex-wrap: wrap; }
+  .dl-badge { margin-left: 0; }
+  .rel { padding: 20px 18px; }
+  .rel time { margin-left: 0; width: 100%; }
+}

@@ -123,13 +123,12 @@
   });
 
   // Confettis sur les boutons de téléchargement
-  $$("[data-confetti]").forEach(a => a.addEventListener("click", e => {
-    if (reduce || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
-    e.preventDefault();
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-confetti]");
+    if (!a || reduce || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
     const r = a.getBoundingClientRect();
     burst(r.left + r.width / 2, r.top + r.height / 2, 80);
-    setTimeout(() => { location.href = a.href; }, 650);
-  }));
+  });
 
   // Barre de progression + nav
   const nav = $("#nav"), bar = $("#progress");
