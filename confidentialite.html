@@ -79,6 +79,8 @@
       <h3>Compteur d'utilisateurs anonyme</h3>
       <p>Pour afficher le nombre de personnes qui utilisent Zenkord, le logiciel envoie toutes les 5 minutes, tant qu'il est ouvert, un <b>identifiant aléatoire recréé à chaque lancement</b> au compteur Zenkord (Cloudflare). Aucun compte Discord, pseudo, message ni donnée d'appareil n'est envoyé, et l'identifiant ne permet pas de te reconnaître d'une session à l'autre.</p>
       <p>Pour limiter les abus, le compteur calcule une empreinte de ton adresse IP salée avec une valeur aléatoire renouvelée chaque jour. Ni l'adresse IP ni l'identifiant ne sont conservés plus de 6 minutes. Seuls le nombre d'utilisateurs en ligne et le record sont gardés.</p>
+      <h3>Compteur d'installations anonyme</h3>
+      <p>Au premier lancement sur un ordinateur, Zenkord envoie une seule requête <b>sans aucun identifiant</b> au même compteur, pour que le site affiche le nombre d'installations. Un fichier local retient que c'est fait, pour ne jamais compter deux fois le même ordinateur. Pour limiter les abus, le compteur garde une empreinte salée de ton adresse IP (sel renouvelé chaque jour) pendant une journée au plus. Seul le total est conservé. La même option dans les réglages de Zenkord désactive ce signal.</p>
       <p>Base légale : intérêt légitime à mesurer l'audience du logiciel de façon strictement anonyme et agrégée. Tu peux t'y opposer à tout moment en désactivant « Me compter anonymement dans le compteur d'utilisateurs Zenkord » dans les réglages de Zenkord.</p>
       <p> Certaines fonctionnalités optionnelles du logiciel (par exemple l'IA intégrée ou la traduction) font appel à des services tiers que tu choisis d'activer toi-même dans ses réglages.</p>
     </section>

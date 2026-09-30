@@ -59,6 +59,7 @@ const next = {
     members: dc.status === "fulfilled" ? dc.value.members : previous.members ?? null,
     users: ct.status === "fulfilled" ? ct.value.online : previous.users ?? null,
     peak: ct.status === "fulfilled" ? ct.value.peak : previous.peak ?? null,
+    installs: ct.status === "fulfilled" ? ct.value.installs ?? null : previous.installs ?? null,
 };
 
 if (gh.status === "fulfilled") {

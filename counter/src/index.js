@@ -4,6 +4,7 @@ import { DurableObject } from "cloudflare:workers";
 // moins de 6 minutes compte comme « en ligne ».
 const WINDOW = 6 * 60 * 1000;
 const MAX_IDS_PER_IP = 5;
+const MAX_INSTALLS_PER_IP_PER_DAY = 3;
 const ID_RE = /^[a-f0-9]{32}$/;
 
 const cors = {
@@ -23,6 +24,7 @@ export class Presence extends DurableObject {
         this.sql = ctx.storage.sql;
         this.sql.exec("CREATE TABLE IF NOT EXISTS seen (id TEXT PRIMARY KEY, ip TEXT NOT NULL, ts INTEGER NOT NULL)");
         this.sql.exec("CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT NOT NULL)");
+        this.sql.exec("CREATE TABLE IF NOT EXISTS install_ips (ip TEXT PRIMARY KEY, n INTEGER NOT NULL)");
     }
 
     getMeta(k) {
@@ -42,6 +44,7 @@ export class Presence extends DurableObject {
             salt = crypto.randomUUID();
             this.setMeta("salt", salt);
             this.setMeta("saltDay", day);
+            this.sql.exec("DELETE FROM install_ips");
         }
         const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(salt + ip));
         return [...new Uint8Array(digest).slice(0, 12)].map(b => b.toString(16).padStart(2, "0")).join("");
@@ -61,6 +64,18 @@ export class Presence extends DurableObject {
         return this.stats();
     }
 
+    // Une installation = un signal unique envoyé par Zenkord, sans identifiant.
+    // Limité par empreinte d'IP et par jour pour éviter qu'on gonfle le chiffre.
+    async install(ip) {
+        const ipHash = await this.hashIp(ip);
+        const n = this.sql.exec("SELECT n FROM install_ips WHERE ip = ?", ipHash).toArray()[0]?.n ?? 0;
+        if (n < MAX_INSTALLS_PER_IP_PER_DAY) {
+            this.sql.exec("INSERT INTO install_ips (ip, n) VALUES (?, 1) ON CONFLICT(ip) DO UPDATE SET n = n + 1", ipHash);
+            this.setMeta("installs", Number(this.getMeta("installs") ?? 0) + 1);
+        }
+        return this.stats();
+    }
+
     bye(id) {
         this.sql.exec("DELETE FROM seen WHERE id = ?", id);
         return this.stats();
@@ -77,7 +92,7 @@ export class Presence extends DurableObject {
             this.setMeta("peak", peak);
             this.setMeta("peakAt", peakAt);
         }
-        return { online, peak, peakAt };
+        return { online, peak, peakAt, installs: Number(this.getMeta("installs") ?? 0) };
     }
 }
 
@@ -90,6 +105,9 @@ export default {
 
         if (request.method === "GET" && pathname === "/stats")
             return json(await presence.stats(), 200, { "Cache-Control": "public, max-age=10" });
+
+        if (request.method === "POST" && pathname === "/install")
+            return json(await presence.install(request.headers.get("CF-Connecting-IP") ?? "unknown"));
 
         if (request.method === "POST" && (pathname === "/ping" || pathname === "/bye")) {
             const body = await request.json().catch(() => null);

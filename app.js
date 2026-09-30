@@ -185,7 +185,7 @@
     });
     shown[key] = value;
   }
-  const apply = d => ["downloads", "online", "members", "releases", "version", "users", "peak"].forEach(k => d[k] !== undefined && setLive(k, d[k]));
+  const apply = d => ["downloads", "online", "members", "releases", "version", "users", "peak", "installs"].forEach(k => d[k] !== undefined && setLive(k, d[k]));
 
   async function fromFile() {
     try {
@@ -225,7 +225,7 @@
       const r = await fetch("https://zenkord-counter.zenkord.workers.dev/stats");
       if (!r.ok) throw 0;
       const j = await r.json();
-      apply({ users: j.online, peak: j.peak });
+      apply({ users: j.online, peak: j.peak, installs: j.installs });
     } catch {}
   }
 
