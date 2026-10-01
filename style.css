@@ -245,3 +245,10 @@ main, footer { overflow-x: hidden; overflow-x: clip; }
   .legal td { border: 0; padding: 4px 0; }
   .legal td::before { content: attr(data-label); display: block; font-size: .78rem; font-weight: 900; color: var(--gold); text-transform: uppercase; letter-spacing: .05em; }
 }
+
+/* Titres lisibles : texte blanc = contour foncé et plus fin, texte coloré = contour blanc */
+.sticker-text { -webkit-text-stroke: .12em var(--royal-2); }
+.sticker-text .g, .stats h2.sticker-text { -webkit-text-stroke-color: var(--white); }
+@media (max-width: 640px) {
+  .sticker-text { -webkit-text-stroke-width: .1em; }
+}
