@@ -34,7 +34,7 @@
       const meta = hit ? `${esc(hit.rel.tag)} · ${size(hit.asset.size)}` : "Bientôt disponible";
       const inner = `<span class="dl-ic ${p.icon}">${svg(p.icon)}</span><span class="dl-txt"><b>${p.title}</b><small>${p.sub}</small><em>${meta}</em></span>${p.main && hit ? '<span class="dl-badge">Recommandé</span>' : ""}`;
       return hit
-        ? `<a class="${cls}" href="${esc(hit.asset.url)}" data-confetti download>${inner}</a>`
+        ? `<a class="${cls}" href="${esc(hit.asset.url)}" data-confetti data-dl download>${inner}</a>`
         : `<div class="${cls}" aria-disabled="true">${inner}</div>`;
     }).join("");
     el.dispatchEvent(new CustomEvent("zk:rendered", { bubbles: true }));
@@ -50,10 +50,47 @@
           ${rel.prerelease ? '<span class="tag pre">Préversion</span>' : ""}
           <time datetime="${esc(rel.date)}">${date(rel.date)}</time>
         </header>
-        ${rel.assets.length ? `<ul>${rel.assets.map(a => `<li><a href="${esc(a.url)}" download>${esc(a.name)}</a><span>${size(a.size)} · ${a.downloads.toLocaleString("fr-FR")} téléchargement${a.downloads > 1 ? "s" : ""}</span></li>`).join("")}</ul>` : '<p class="dl-empty">Aucun fichier dans cette version.</p>'}
+        ${rel.assets.length ? `<ul>${rel.assets.map(a => `<li><a href="${esc(a.url)}" data-dl download>${esc(a.name)}</a><span>${size(a.size)} · ${a.downloads.toLocaleString("fr-FR")} téléchargement${a.downloads > 1 ? "s" : ""}</span></li>`).join("")}</ul>` : '<p class="dl-empty">Aucun fichier dans cette version.</p>'}
         <a class="rel-notes" href="${esc(rel.url)}">Notes de version sur GitHub →</a>
       </article>`).join("");
   }
+
+  // Avant le premier téléchargement de la visite, on propose de rejoindre le Discord.
+  const INVITE = "https://discord.gg/X3GpHjUNBd";
+  let asked = false, pendingUrl = null, lastFocus = null;
+  const dlg = document.createElement("div");
+  dlg.className = "dlg";
+  dlg.innerHTML = `
+    <div class="dlg-box" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+      <button class="dlg-close" type="button" aria-label="Fermer" data-dlg="close">✕</button>
+      <div class="dlg-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19.7 19.7 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.6 19.6 0 0 0-4.9 1.4C.6 9 .1 13.5.3 18a19.8 19.8 0 0 0 6 3l1.3-2a12.8 12.8 0 0 1-2-1l.5-.4a14.1 14.1 0 0 0 12 0l.5.4-2 1 1.3 2a19.7 19.7 0 0 0 6-3c.4-5.2-.8-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg></div>
+      <h2 id="dlg-title">Avant d'installer…</h2>
+      <p>Rejoins le <b>Discord officiel de Zenkord</b> : aide à l'installation, annonces des mises à jour et une commu qui t'attend !</p>
+      <div class="dlg-actions">
+        <button class="btn blue" type="button" data-dlg="join">Rejoindre le Discord</button>
+        <button class="btn white" type="button" data-dlg="skip">Télécharger sans rejoindre</button>
+      </div>
+      <small>Le téléchargement démarre dans les deux cas.</small>
+    </div>`;
+  document.body.append(dlg);
+
+  function start(url) { asked = true; close(); location.href = url; }
+  function close() { dlg.classList.remove("show"); lastFocus?.focus?.(); }
+  dlg.addEventListener("click", e => {
+    const act = e.target.closest("[data-dlg]")?.dataset.dlg;
+    if (e.target === dlg || act === "close") return close();
+    if (act === "join") { window.open(INVITE, "_blank", "noopener"); setTimeout(() => start(pendingUrl), 400); }
+    if (act === "skip") start(pendingUrl);
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && dlg.classList.contains("show")) close(); });
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a[data-dl]");
+    if (!a || asked || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    e.preventDefault();
+    pendingUrl = a.href; lastFocus = a;
+    dlg.classList.add("show");
+    dlg.querySelector('[data-dlg="join"]').focus();
+  });
 
   fetch("releases.json?t=" + Math.floor(Date.now() / 60000), { cache: "no-store" })
     .then(r => r.json())

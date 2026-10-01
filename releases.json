@@ -1,5 +1,68 @@
 [
   {
+    "tag": "v1.23.2",
+    "name": "v1.23.2",
+    "date": "2026-10-01T16:51:00Z",
+    "prerelease": false,
+    "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.23.2",
+    "assets": [
+      {
+        "name": "zenkord-1.23.2-mac-arm64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-arm64.dmg",
+        "size": 161504756,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.2-mac-arm64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-arm64.zip",
+        "size": 161428739,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.2-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-x64.dmg",
+        "size": 166934439,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.2-mac-x64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-x64.zip",
+        "size": 166929193,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Chrome.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Chrome.zip",
+        "size": 3366892,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-dist.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-dist.zip",
+        "size": 26416829,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Firefox.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Firefox.zip",
+        "size": 3367247,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Installer.exe",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Installer.exe",
+        "size": 72293326,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord.user.js",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord.user.js",
+        "size": 5757900,
+        "downloads": 0
+      }
+    ]
+  },
+  {
     "tag": "v1.23.1",
     "name": "v1.23.1",
     "date": "2026-09-30T12:46:06Z",
