@@ -254,3 +254,10 @@ main, footer { overflow-x: hidden; overflow-x: clip; }
 }
 
 :root { color-scheme: dark; }
+
+/* Téléphone : titres blancs sans contour (certains navigateurs en mode sombre
+   éclaircissent le contour et brouillent les lettres) ; les mots colorés gardent le leur */
+@media (max-width: 640px) {
+  .sticker-text { -webkit-text-stroke: 0; text-shadow: 0 .07em 0 var(--shadow), 0 .12em .3em rgba(0, 0, 0, .55); }
+  .sticker-text .g, .stats h2.sticker-text { -webkit-text-stroke: .09em var(--white); }
+}
