@@ -94,8 +94,8 @@
     el.addEventListener("dblclick", () => { dx = dy = 0; el.style.translate = ""; });
   });
 
-  // Parallaxe des étoiles
-  if (fine && !reduce) {
+  // Parallaxe des étoiles (réaction à la souris, active même si les animations sont réduites)
+  if (fine) {
     addEventListener("pointermove", e => {
       const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
       for (const s of stars.children) s.style.translate = `${x * -40 * s.dataset.depth}px ${y * -40 * s.dataset.depth}px`;

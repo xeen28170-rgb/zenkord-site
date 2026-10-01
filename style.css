@@ -199,3 +199,7 @@ main, footer { position: relative; z-index: 1; }
 .dlg-box small { display: block; margin-top: 14px; color: #8a84ad; font-weight: 700; }
 .dlg-close { position: absolute; top: 12px; right: 14px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: #eeecfa; color: #5a5480; cursor: pointer; font-weight: 900; }
 .dlg-close:hover { background: #dedaf5; }
+#sky-fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 85; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .stars svg { animation: twinkle 4s ease-in-out infinite !important; }
+}
