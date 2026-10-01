@@ -252,3 +252,5 @@ main, footer { overflow-x: hidden; overflow-x: clip; }
 @media (max-width: 640px) {
   .sticker-text { -webkit-text-stroke-width: .1em; }
 }
+
+:root { color-scheme: dark; }
