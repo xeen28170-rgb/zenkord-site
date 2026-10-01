@@ -14,8 +14,13 @@
   document.body.append(fx);
   const fxx = fx.getContext("2d");
 
-  const COLORS = ["#ffd84a", "#ffffff", "#ffffff", "#9aa6ff"];
+  const season = window.ZK_SEASON || "normal";
+  const COLORS = {
+    halloween: ["#ff8a1f", "#ffffff", "#c79bff", "#ffd09a"],
+    noel: ["#ffffff", "#ffffff", "#ffd84a", "#ff8a95"],
+  }[season] || ["#ffd84a", "#ffffff", "#ffffff", "#9aa6ff"];
   let W = 0, H = 0, stars = [], sparks = [], shooting = null, nextShoot = 3000;
+  let flakes = [], bats = [], nextBat = 2500;
   const mouse = { x: -9999, y: -9999 };
 
   const makeStar = () => ({
@@ -35,6 +40,31 @@
     x.setTransform(dpr, 0, 0, dpr, 0, 0);
     fxx.setTransform(dpr, 0, 0, dpr, 0, 0);
     stars = Array.from({ length: Math.min(220, Math.round(W * H / 9000)) }, makeStar);
+    if (season === "noel") flakes = Array.from({ length: Math.min(160, Math.round(W * H / 12000)) }, () => makeFlake(true));
+  }
+
+  // Noël : flocons qui tombent en se balançant
+  const makeFlake = (anywhere) => ({
+    x: Math.random() * W, y: anywhere ? Math.random() * H : -10,
+    r: 1.5 + Math.random() * 3.5, vy: .4 + Math.random() * 1.1,
+    sway: Math.random() * 6.28, swaySpeed: .5 + Math.random(), a: .5 + Math.random() * .5,
+  });
+
+  // Halloween : silhouette de chauve-souris qui bat des ailes
+  function drawBat(bx, by, size, flap) {
+    const w = size, h = size * .5, f = Math.sin(flap) * .6;
+    fxx.fillStyle = "#1a0b26"; fxx.globalAlpha = .92;
+    fxx.beginPath();
+    fxx.moveTo(bx, by);
+    fxx.quadraticCurveTo(bx - w * .35, by - h * (1 + f), bx - w, by - h * f * 1.2);
+    fxx.quadraticCurveTo(bx - w * .7, by + h * .15, bx - w * .55, by + h * .35);
+    fxx.quadraticCurveTo(bx - w * .3, by + h * .1, bx, by + h * .45);
+    fxx.quadraticCurveTo(bx + w * .3, by + h * .1, bx + w * .55, by + h * .35);
+    fxx.quadraticCurveTo(bx + w * .7, by + h * .15, bx + w, by - h * f * 1.2);
+    fxx.quadraticCurveTo(bx + w * .35, by - h * (1 + f), bx, by);
+    fxx.fill();
+    fxx.fillStyle = "#ff8a1f"; fxx.globalAlpha = 1;
+    fxx.beginPath(); fxx.arc(bx - size * .07, by + h * .12, size * .03, 0, 7); fxx.arc(bx + size * .07, by + h * .12, size * .03, 0, 7); fxx.fill();
   }
 
   function shape(px, py, r, cross, ctx = x) {
@@ -89,6 +119,32 @@
       shape(p.x, p.y, p.r * p.life + .4, true, fxx);
     }
     sparks = sparks.filter(p => p.life > 0);
+
+    if (season === "noel") {
+      fxx.fillStyle = "#ffffff";
+      for (const fl of flakes) {
+        fl.y += fl.vy * (reduce ? .5 : 1); fl.sway += .01 * fl.swaySpeed;
+        const fxp = fl.x + Math.sin(fl.sway) * 18;
+        const dx = fxp - mouse.x, dy = fl.y - mouse.y, d = Math.hypot(dx, dy);
+        if (d < 90) fl.x += dx / (d || 1) * (90 - d) / 90 * 3;
+        fxx.globalAlpha = fl.a * .85;
+        fxx.beginPath(); fxx.arc(fxp, fl.y, fl.r, 0, Math.PI * 2); fxx.fill();
+        if (fl.y > H + 10) Object.assign(fl, makeFlake(false));
+      }
+    }
+
+    if (season === "halloween") {
+      if (!reduce && t > nextBat) {
+        const ltr = Math.random() < .5;
+        bats.push({ x: ltr ? -60 : W + 60, y: 80 + Math.random() * H * .5, vx: (ltr ? 1 : -1) * (2.2 + Math.random() * 2), size: 26 + Math.random() * 26, flap: Math.random() * 6, wob: Math.random() * 6 });
+        nextBat = t + 2500 + Math.random() * 4500;
+      }
+      for (const bt of bats) {
+        bt.x += bt.vx; bt.flap += .32; bt.wob += .04;
+        drawBat(bt.x, bt.y + Math.sin(bt.wob) * 24, bt.size, bt.flap);
+      }
+      bats = bats.filter(bt => bt.x > -120 && bt.x < W + 120);
+    }
 
     if (!reduce) {
       if (!shooting && t > nextShoot) {

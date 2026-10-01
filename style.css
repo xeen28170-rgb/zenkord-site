@@ -203,3 +203,35 @@ main, footer { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) {
   .stars svg { animation: twinkle 4s ease-in-out infinite !important; }
 }
+
+/* ── Thèmes de saison (activés par season.js selon la date) ── */
+:root[data-season="halloween"] {
+  --navy: #140a1f; --navy-2: #241038;
+  --royal: #8c4bf5; --royal-2: #5a1fb8; --royal-hi: #c79bff;
+  --gold: #ff8a1f; --gold-hi: #ffd09a; --gold-deep: #e0560b; --gold-side: #8a3000;
+  --shadow: #0b0412; --muted: #d8c2f0;
+}
+:root[data-season="noel"] {
+  --navy: #06162b; --navy-2: #0c2442;
+  --royal: #e63946; --royal-2: #b5172b; --royal-hi: #ff8a95;
+  --shadow: #030b16; --muted: #c9d6f0;
+}
+:root[data-season="halloween"] .hero::before {
+  background: radial-gradient(700px 480px at 50% 30%, rgba(255, 138, 31, .35), transparent 70%), radial-gradient(900px 600px at 50% 10%, var(--royal-2), transparent 75%), var(--navy);
+}
+:root[data-season="noel"] .hero::before {
+  background: radial-gradient(700px 480px at 50% 30%, rgba(255, 216, 74, .28), transparent 70%), radial-gradient(900px 600px at 50% 10%, #0f3a5c, transparent 75%), var(--navy);
+}
+:root[data-season="noel"] .stats { background: linear-gradient(180deg, #ffd84a, #ffc21a); }
+.wave path { fill: var(--gold); }
+:root[data-season="noel"] .btn.blue { --face: #2a9d5c; --side: #17663a; }
+:root[data-season="noel"] .ribbon.b { background: #2a9d5c; }
+:root[data-season="noel"] .dlg-ic { background: #e63946; box-shadow: 0 6px 0 #b5172b; }
+
+.season-badge {
+  display: inline-block; margin: 22px auto 0; padding: 8px 18px; border-radius: 999px;
+  font-family: var(--display); font-size: 1.15rem; letter-spacing: .02em;
+  background: var(--gold); color: #2a1b00; border: 3px solid var(--white);
+  box-shadow: 0 5px 0 var(--gold-side); rotate: -2deg;
+}
+:root[data-season="noel"] .season-badge { background: #e63946; color: #fff; box-shadow: 0 5px 0 #b5172b; }
