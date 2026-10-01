@@ -235,3 +235,13 @@ main, footer { position: relative; z-index: 1; }
   box-shadow: 0 5px 0 var(--gold-side); rotate: -2deg;
 }
 :root[data-season="noel"] .season-badge { background: #e63946; color: #fff; box-shadow: 0 5px 0 #b5172b; }
+
+/* Téléphone : aucun défilement horizontal, tout se lit de haut en bas */
+main, footer { overflow-x: hidden; overflow-x: clip; }
+@media (max-width: 640px) {
+  .legal table, .legal tbody, .legal tr, .legal td { display: block; width: 100%; }
+  .legal thead { display: none; }
+  .legal tr { padding: 12px 14px; margin-bottom: 12px; border-radius: 14px; background: rgba(7, 5, 42, .35); }
+  .legal td { border: 0; padding: 4px 0; }
+  .legal td::before { content: attr(data-label); display: block; font-size: .78rem; font-weight: 900; color: var(--gold); text-transform: uppercase; letter-spacing: .05em; }
+}
