@@ -1,12 +1,14 @@
 (() => {
   const PLATFORMS = [
-    { id: "win", title: "Windows", sub: "Installeur .exe", test: /^Zenkord-Installer\.exe$/i, icon: "win", main: true },
+    { id: "win", title: "Windows", sub: "Installeur .exe", test: /^Zenkord-Installer\.exe$/i, icon: "win", main: true, stable: "Zenkord-Installer.exe" },
     { id: "mac-arm", title: "macOS", sub: "Apple Silicon (M1 et +)", test: /mac-arm64\.dmg$/i, icon: "mac" },
     { id: "mac-x64", title: "macOS", sub: "Intel", test: /mac-x64\.dmg$/i, icon: "mac" },
-    { id: "chrome", title: "Chrome & Edge", sub: "Extension navigateur", test: /chrome\.zip$/i, icon: "chrome" },
-    { id: "firefox", title: "Firefox", sub: "Extension navigateur", test: /firefox\.zip$/i, icon: "firefox" },
-    { id: "userscript", title: "Userscript", sub: "Tampermonkey, Violentmonkey", test: /\.user\.js$/i, icon: "code" },
+    { id: "chrome", title: "Chrome & Edge", sub: "Extension navigateur", test: /chrome\.zip$/i, icon: "chrome", stable: "Zenkord-Chrome.zip" },
+    { id: "firefox", title: "Firefox", sub: "Extension navigateur", test: /firefox\.zip$/i, icon: "firefox", stable: "Zenkord-Firefox.zip" },
+    { id: "userscript", title: "Userscript", sub: "Tampermonkey, Violentmonkey", test: /\.user\.js$/i, icon: "code", stable: "Zenkord.user.js" },
   ];
+  // Lien « dernière version » de GitHub : redirige toujours vers le fichier le plus récent, instantanément
+  const LATEST = "https://github.com/xeen28170-rgb/zenkord/releases/latest/download/";
   const ICONS = {
     win: '<path d="M3 5.5 10.5 4.4v7.1H3V5.5Zm0 13 7.5 1.1v-7H3v5.9Zm8.4 1.2L21 21v-8.4h-9.6v7.1ZM11.4 4.3V11.5H21V3l-9.6 1.3Z"/>',
     mac: '<path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.8C6.9 7.4 5.4 8.3 4.6 9.8c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.6-1-2.8-4.2ZM14.1 5.8c.7-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3Z"/>',
@@ -30,11 +32,12 @@
   function renderCards(el, list) {
     el.innerHTML = PLATFORMS.map(p => {
       const hit = findLatest(list, p.test);
-      const cls = `dl-card${p.main ? " main" : ""}${hit ? "" : " off"}`;
-      const meta = hit ? `${esc(hit.rel.tag)} · ${size(hit.asset.size)}` : "Bientôt disponible";
-      const inner = `<span class="dl-ic ${p.icon}">${svg(p.icon)}</span><span class="dl-txt"><b>${p.title}</b><small>${p.sub}</small><em>${meta}</em></span>${p.main && hit ? '<span class="dl-badge">Recommandé</span>' : ""}`;
-      return hit
-        ? `<a class="${cls}" href="${esc(hit.asset.url)}" data-confetti data-dl download>${inner}</a>`
+      const url = p.stable ? LATEST + p.stable : hit?.asset.url;
+      const cls = `dl-card${p.main ? " main" : ""}${url ? "" : " off"}`;
+      const meta = hit ? `${esc(hit.rel.tag)} · ${size(hit.asset.size)}` : url ? "Dernière version" : "Bientôt disponible";
+      const inner = `<span class="dl-ic ${p.icon}">${svg(p.icon)}</span><span class="dl-txt"><b>${p.title}</b><small>${p.sub}</small><em>${meta}</em></span>${p.main && url ? '<span class="dl-badge">Recommandé</span>' : ""}`;
+      return url
+        ? `<a class="${cls}" href="${esc(url)}" data-confetti data-dl download>${inner}</a>`
         : `<div class="${cls}" aria-disabled="true">${inner}</div>`;
     }).join("");
     el.dispatchEvent(new CustomEvent("zk:rendered", { bubbles: true }));
