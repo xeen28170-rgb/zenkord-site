@@ -34,31 +34,31 @@
         "name": "Zenkord-Chrome.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord-Chrome.zip",
         "size": 3366894,
-        "downloads": 1
+        "downloads": 2
       },
       {
         "name": "zenkord-dist.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-dist.zip",
-        "size": 26416840,
+        "size": 26416836,
         "downloads": 0
       },
       {
         "name": "Zenkord-Firefox.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord-Firefox.zip",
         "size": 3367249,
-        "downloads": 1
+        "downloads": 2
       },
       {
         "name": "Zenkord-Installer.exe",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord-Installer.exe",
         "size": 72298446,
-        "downloads": 2
+        "downloads": 3
       },
       {
         "name": "Zenkord.user.js",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord.user.js",
         "size": 5757900,
-        "downloads": 1
+        "downloads": 2
       }
     ]
   },
