@@ -37,12 +37,6 @@
         "downloads": 3
       },
       {
-        "name": "zenkord-dist.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-dist.zip",
-        "size": 26417620,
-        "downloads": 1
-      },
-      {
         "name": "Zenkord-Firefox.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord-Firefox.zip",
         "size": 3367249,
@@ -97,12 +91,6 @@
         "name": "Zenkord-Chrome.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Chrome.zip",
         "size": 3366892,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-dist.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-dist.zip",
-        "size": 26416829,
         "downloads": 0
       },
       {
@@ -163,12 +151,6 @@
         "downloads": 1
       },
       {
-        "name": "zenkord-dist.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-dist.zip",
-        "size": 26416266,
-        "downloads": 0
-      },
-      {
         "name": "Zenkord-Firefox.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/Zenkord-Firefox.zip",
         "size": 3366944,
@@ -224,12 +206,6 @@
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/Zenkord-Chrome.zip",
         "size": 3366594,
         "downloads": 0
-      },
-      {
-        "name": "zenkord-dist.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-dist.zip",
-        "size": 26416266,
-        "downloads": 1
       },
       {
         "name": "Zenkord-Firefox.zip",
