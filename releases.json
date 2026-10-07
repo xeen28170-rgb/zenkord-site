@@ -1,5 +1,62 @@
 [
   {
+    "tag": "v1.24.0",
+    "name": "v1.24.0",
+    "date": "2026-10-07T12:35:04Z",
+    "prerelease": false,
+    "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.24.0",
+    "assets": [
+      {
+        "name": "zenkord-1.24.0-mac-arm64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-arm64.dmg",
+        "size": 161943915,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.24.0-mac-arm64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-arm64.zip",
+        "size": 161893404,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.24.0-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-x64.dmg",
+        "size": 167390242,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.24.0-mac-x64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-x64.zip",
+        "size": 167393858,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Chrome.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Chrome.zip",
+        "size": 3408948,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Firefox.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Firefox.zip",
+        "size": 3409303,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Installer.exe",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Installer.exe",
+        "size": 72298446,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord.user.js",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord.user.js",
+        "size": 5756116,
+        "downloads": 0
+      }
+    ]
+  },
+  {
     "tag": "v1.23.3",
     "name": "v1.23.3",
     "date": "2026-10-02T11:14:47Z",
