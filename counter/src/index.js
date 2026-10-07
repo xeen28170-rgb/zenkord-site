@@ -7,16 +7,28 @@ const MAX_IDS_PER_IP = 5;
 const MAX_INSTALLS_PER_IP_PER_DAY = 3;
 const ID_RE = /^[a-f0-9]{32}$/;
 
+// Seul le site lit /stats depuis un navigateur. Les signaux /ping, /install
+// et /bye viennent du logiciel, jamais d'une page web.
 const cors = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
 };
 
 const json = (data, status = 200, extra = {}) => new Response(JSON.stringify(data), {
     status,
-    headers: { "Content-Type": "application/json", ...cors, ...extra },
+    headers: { "Content-Type": "application/json", ...extra },
 });
+
+// En IPv6, une même connexion dispose d'un bloc /64 entier : on regroupe
+// donc par bloc, sinon les limites par IP se contournent en changeant d'adresse.
+function ipKey(ip) {
+    if (!ip.includes(":")) return ip;
+    const [head, tail = ""] = ip.split("::");
+    const start = head ? head.split(":") : [];
+    const end = tail ? tail.split(":") : [];
+    const groups = [...start, ...Array(Math.max(0, 8 - start.length - end.length)).fill("0"), ...end];
+    return groups.slice(0, 4).join(":") + "::/64";
+}
 
 export class Presence extends DurableObject {
     constructor(ctx, env) {
@@ -97,24 +109,38 @@ export class Presence extends DurableObject {
 }
 
 export default {
-    async fetch(request, env) {
+    async fetch(request, env, ctx) {
         const { pathname } = new URL(request.url);
         if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
 
         const presence = env.PRESENCE.get(env.PRESENCE.idFromName("global"));
 
-        if (request.method === "GET" && pathname === "/stats")
-            return json(await presence.stats(), 200, { "Cache-Control": "public, max-age=10" });
+        if (request.method === "GET" && pathname === "/stats") {
+            const cache = caches.default;
+            const cached = await cache.match(request);
+            if (cached) return cached;
+            const response = json(await presence.stats(), 200, { ...cors, "Cache-Control": "public, max-age=10" });
+            ctx.waitUntil(cache.put(request, response.clone()));
+            return response;
+        }
+
+        // Les pages web envoient toujours leur origine (https://…) avec ces requêtes,
+        // contrairement au logiciel : un site tiers ne peut donc pas gonfler les compteurs.
+        if (request.method === "POST" && /^https?:/i.test(request.headers.get("Origin") ?? ""))
+            return json({ error: "forbidden" }, 403);
+
+        const ip = ipKey(request.headers.get("CF-Connecting-IP") ?? "unknown");
 
         if (request.method === "POST" && pathname === "/install")
-            return json(await presence.install(request.headers.get("CF-Connecting-IP") ?? "unknown"));
+            return json(await presence.install(ip));
 
         if (request.method === "POST" && (pathname === "/ping" || pathname === "/bye")) {
+            if (!request.headers.get("Content-Type")?.startsWith("application/json"))
+                return json({ error: "invalid content type" }, 415);
             const body = await request.json().catch(() => null);
             if (!body || typeof body.id !== "string" || !ID_RE.test(body.id))
                 return json({ error: "invalid id" }, 400);
             if (pathname === "/bye") return json(await presence.bye(body.id));
-            const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
             return json(await presence.ping(body.id, ip));
         }
 

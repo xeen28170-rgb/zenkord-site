@@ -190,6 +190,7 @@
   async function fromFile() {
     try {
       const r = await fetch("stats.json?t=" + Math.floor(Date.now() / 60000), { cache: "no-store" });
+      if (!r.ok) throw 0;
       const d = await r.json();
       apply(d);
       if (!isLive() && d.updatedAt) {
@@ -199,8 +200,12 @@
     } catch { apply({}); }
   }
 
+  // L'API GitHub sans compte n'accepte que 60 requêtes par heure : on l'interroge
+  // toutes les 5 minutes, et les autres compteurs toutes les 30 secondes.
+  let lastGithub = 0;
   async function fromApis() {
-    try {
+    if (Date.now() - lastGithub >= 300000) try {
+      lastGithub = Date.now();
       let all = [];
       for (let page = 1; page <= 5; page++) {
         const r = await fetch(`https://api.github.com/repos/xeen28170-rgb/zenkord/releases?per_page=100&page=${page}`);
@@ -211,8 +216,8 @@
       }
       let downloads = 0;
       for (const rel of all) for (const a of rel.assets)
-        if (/\.(exe|dmg|zip|user\.js)$/i.test(a.name) && !/^(Discord|elevate)\.exe$/i.test(a.name)) downloads += a.download_count;
-      const tagged = all.filter(r => /^v\d/.test(r.tag_name) && !r.draft);
+        if (/\.(exe|dmg|zip|user\.js)$/i.test(a.name) && !/^(Discord|elevate)\.exe$|^zenkord-dist\.zip$/i.test(a.name)) downloads += a.download_count;
+      const tagged = all.filter(r => /^v\d/.test(r.tag_name) && !/-dev$/.test(r.tag_name) && !r.draft);
       apply({ downloads, releases: tagged.length, version: tagged[0]?.tag_name });
     } catch {}
     try {
@@ -242,7 +247,7 @@
       fromFile().then(fromApis);
       timer = setInterval(fromApis, 30000);
     } else {
-      mode.innerHTML = 'Mis à jour toutes les 10 min · <button type="button" data-open-consent-inline>passer en temps réel</button>';
+      mode.innerHTML = 'Mis à jour toutes les 15 min environ · <button type="button" data-open-consent-inline>passer en temps réel</button>';
       fromFile();
       timer = setInterval(fromFile, 120000);
     }

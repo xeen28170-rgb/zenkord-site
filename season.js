@@ -16,9 +16,11 @@
     const kind = img.dataset.logo;
     if (kind && !img.getAttribute("src")) img.src = (kind === "hero" ? "logo-hero" : "logo") + suffix + ".webp";
   };
-  const l = document.createElement("link");
-  l.rel = "preload"; l.as = "image"; l.href = `logo-hero${suffix}.webp`;
-  document.head.append(l);
+  if (/(^|\/)(index\.html)?$/.test(location.pathname)) {
+    const l = document.createElement("link");
+    l.rel = "preload"; l.as = "image"; l.href = `logo-hero${suffix}.webp`;
+    document.head.append(l);
+  }
   let badgeDone = season === "normal";
   const apply = node => {
     if (node.nodeType !== 1) return;
