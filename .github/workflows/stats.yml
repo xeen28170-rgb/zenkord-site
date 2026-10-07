@@ -37,4 +37,8 @@ jobs:
           git config user.email "41898291+github-actions[bot]@users.noreply.github.com"
           git add stats.json releases.json
           git commit -m "chore: update live stats"
-          git push
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash && git push && exit 0
+            sleep $((attempt * 5))
+          done
+          exit 1

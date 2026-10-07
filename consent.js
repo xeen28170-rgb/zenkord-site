@@ -26,7 +26,7 @@
   banner.setAttribute("aria-label", "Gestion des cookies");
   banner.innerHTML = `
     <h2>🍪 Ton choix, tes données</h2>
-    <p>Ce site n'utilise ni publicité ni mesure d'audience. Avec ton accord, il peut afficher les compteurs <b>en temps réel</b> en interrogeant GitHub, Discord et le compteur Zenkord (hébergé chez Cloudflare) depuis ton navigateur, ce qui leur transmet ton adresse IP. Sans accord, les chiffres sont mis à jour toutes les 10 minutes, sans aucun service tiers. <a href="confidentialite.html">En savoir plus</a></p>
+    <p>Ce site n'utilise ni publicité ni mesure d'audience. Avec ton accord, il peut afficher les compteurs <b>en temps réel</b> en interrogeant GitHub, Discord et le compteur Zenkord (hébergé chez Cloudflare) depuis ton navigateur, ce qui leur transmet ton adresse IP. Sans accord, les chiffres sont mis à jour toutes les 15 minutes environ, sans aucun service tiers. <a href="confidentialite.html">En savoir plus</a></p>
     <div class="cc-actions">
       <button class="btn outline" data-cc="refuse" type="button">Tout refuser</button>
       <button class="btn outline" data-cc="custom" type="button">Personnaliser</button>

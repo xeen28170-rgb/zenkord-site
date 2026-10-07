@@ -20,13 +20,13 @@ async function github() {
         all = all.concat(batch);
         if (batch.length < 100) break;
     }
-    const isDownload = name => /\.(exe|dmg|zip|user\.js)$/i.test(name) && !/^(Discord|elevate)\.exe$/i.test(name);
+    const isDownload = name => /\.(exe|dmg|zip|user\.js)$/i.test(name) && !/^(Discord|elevate)\.exe$|^zenkord-dist\.zip$/i.test(name);
     let downloads = 0;
     for (const rel of all)
         for (const asset of rel.assets)
             if (isDownload(asset.name)) downloads += asset.download_count;
-    const tagged = all.filter(r => /^v\d/.test(r.tag_name) && !r.draft);
-    const list = tagged.filter(r => !/-dev$/.test(r.tag_name)).map(r => ({
+    const tagged = all.filter(r => /^v\d/.test(r.tag_name) && !/-dev$/.test(r.tag_name) && !r.draft);
+    const list = tagged.map(r => ({
         tag: r.tag_name,
         name: r.name || r.tag_name,
         date: r.published_at,
