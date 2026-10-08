@@ -184,12 +184,12 @@
   // ---------- 1. POV : serveur mort (0-3 s) ----------
   const words = [...document.querySelectorAll('#s1title .w')];
   function s1(t) {
-    const pv = oBack(P(t, 0, 0.14));
+    const pv = oBack(P(t, -0.1, 0.06));
     $('pov').style.transform = `scale(${lerp(0.6, 1, pv)}) rotate(${-6 * (1 - pv)}deg)`;
     words.forEach((w, i) => {
-      const a = 0.12 + i * 0.18, x = P(t, a, a + 0.16), e = oBack(x);
+      const a = -0.06 + i * 0.15, x = P(t, a, a + 0.16), e = oBack(x);
       let extra = '';
-      if (i === 4 && t > 0.84) { const d = t - 0.84; extra = ` rotate(${Math.sin(d * 7) * 7 * Math.exp(-d * 1.6)}deg)`; }
+      if (i === 4 && t > 0.6) { const d = t - 0.6; extra = ` rotate(${Math.sin(d * 7) * 7 * Math.exp(-d * 1.6)}deg)`; }
       css(w, { opacity: x > 0 ? 1 : 0, transform: `translateY(${(1 - e) * 70}px) scale(${0.5 + 0.5 * e})${extra}` });
     });
     const c = oCubic(P(t, 0.1, 0.45));

@@ -75,7 +75,7 @@
 
   // Impacts : tremblement + zoom "punch" (s = intensité)
   const HITS = [
-    { t: 0.84, s: 0.35 },
+    { t: 0.6, s: 0.35 },
     { t: 3.0, s: 1.0 },
     { t: 5.05, s: 0.65 },
     { t: 8.0, s: 0.6 }, { t: 8.25, s: 0.3 },
@@ -105,9 +105,8 @@
   const add = (t, type, o) => SFX.push(Object.assign({ t, type }, o || {}));
   // 1. serveur mort
   add(0, 'crickets', { dur: 2.6 });
-  add(0.02, 'pop', { pitch: 1.3 });
-  [0.12, 0.3, 0.48, 0.66].forEach((t, i) => add(t, 'pop', { pitch: 0.9 + i * 0.12, gain: 0.7 }));
-  add(0.84, 'bonk');
+  [0.0, 0.09, 0.24, 0.39].forEach((t, i) => add(t, 'pop', { pitch: 0.9 + i * 0.12, gain: 0.7 }));
+  add(0.6, 'bonk');
   add(1.0, 'tumble', { dur: 1.6 });
   add(2.45, 'glitch', { dur: 0.55 });
   add(2.55, 'suck', { dur: 0.45 });

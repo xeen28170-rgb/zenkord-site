@@ -188,7 +188,7 @@ const S = {
 };
 
 // Volume de base de chaque bruitage
-const LEVEL = { crickets: 0.35, tumble: 0.25, pop: 0.55, bonk: 0.8, glitch: 0.35, suck: 0.5, boom: 1.0, boomLite: 0.85,
+const LEVEL = { crickets: 0.6, tumble: 0.25, pop: 0.55, bonk: 0.8, glitch: 0.35, suck: 0.5, boom: 1.0, boomLite: 0.85,
   whoosh: 0.45, notif: 0.45, ping: 0.6, slam: 0.75, tick: 0.25, sparkle: 0.12, key: 0.3, riser: 0.32, click: 0.6 };
 
 for (const e of TL.SFX) {

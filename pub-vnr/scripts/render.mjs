@@ -12,6 +12,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const TL = require('../src/timeline.js');
 const BUILD = join(root, 'build'), OUT = join(root, 'out');
 const VIDEO = join(OUT, 'vnr-pub-tiktok.mp4');
+const LIGHT = join(OUT, 'vnr-pub-discord-leger.mp4');
 const AUDIO = join(BUILD, 'audio.wav');
 const STILLS = join(OUT, 'keyframes');
 const KEY_TIMES = [0.9, 2.2, 3.1, 5.15, 7.3, 8.8, 10.2, 11.9, 13.6, 14.6, 15.6, 17.7, 18.6, 19.6];
@@ -102,6 +103,10 @@ async function main() {
     await browser.close();
   }
   verify();
+  // Version légère (< 10 Mo) pour l'envoyer directement sur Discord sans Nitro
+  run(FFMPEG, ['-y', '-v', 'error', '-i', VIDEO, '-c:v', 'libx264', '-preset', 'slow', '-b:v', '3400k', '-maxrate', '3800k',
+    '-bufsize', '7600k', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', LIGHT]);
+  console.log(`${LIGHT} (${(statSync(LIGHT).size / 1e6).toFixed(1)} Mo)`);
 }
 
 // 3. contrôles : durée, piste audio, résolution, fps
