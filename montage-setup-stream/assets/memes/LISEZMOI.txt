@@ -1,0 +1,10 @@
+Dépose ici tes vrais mèmes (ex. téléchargés sur trouveton.meme ou laboiteameme.fr),
+nommés d'après le gag qu'ils remplacent, puis relance : npm run render
+
+  Image : <id>.png / .jpg / .webp   -> remplace le visuel du gag
+  Son   : <id>.mp3 / .wav / .ogg    -> remplace le bruitage du gag
+
+ids : reflexion, comms, prix, budget, comms2, liste, peripheriques, micro, casque, ecran, osef
+(moments exacts dans src/edit.js, tableau GAGS)
+
+Ces fichiers ne sont pas commités (dépôt public).

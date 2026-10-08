@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Calque montage setup stream</title>
+<style>
+@font-face { font-family: "Lilita One"; src: url(../../pub-vnr/assets/fonts/lilita-one-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Lilita One"; src: url(../../pub-vnr/assets/fonts/lilita-one-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito"; font-weight: 500 900; src: url(../../pub-vnr/assets/fonts/nunito-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito"; font-weight: 500 900; src: url(../../pub-vnr/assets/fonts/nunito-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+:root { --acc: #ccff00; --pink: #ff3dae; --red: #ff3b3b; --ink: #0b0b0b; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: transparent; }
+body.preview { background: #333; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: "Nunito", sans-serif; color: #fff; }
+.emo { font-family: "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji", sans-serif; }
+.disp { font-family: "Lilita One", sans-serif; }
+.hide { display: none !important; }
+
+/* Titre (dans la zone sûre : sous les onglets TikTok) */
+#title { position: absolute; left: 64px; width: 836px; top: 262px; display: flex; justify-content: center; }
+#title .in { font-family: "Lilita One"; font-size: 58px; line-height: 1.02; text-align: center; background: var(--ink);
+  border: 5px solid var(--acc); border-radius: 26px; padding: 16px 26px 10px; box-shadow: 0 14px 40px #000a; }
+#title .in b { color: var(--acc); font-weight: 400; }
+
+/* Sous-titres mot par mot */
+#cap { position: absolute; left: 64px; width: 836px; top: 1210px; height: 260px; display: flex; align-items: center; justify-content: center; }
+#cap .line { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 46px; text-align: center; }
+#cap .w { font-family: "Lilita One"; font-size: 96px; line-height: 1.06; text-transform: uppercase; color: #fff;
+  -webkit-text-stroke: 14px #000; paint-order: stroke fill; text-shadow: 0 8px 0 #000, 0 12px 26px #000c; display: inline-block; }
+#cap .w.on { color: var(--acc); }
+#cap .w.emph { color: var(--pink); }
+#cap .w.emph.on { color: var(--acc); }
+
+/* Gags */
+.gag { position: absolute; }
+.sticker { font-size: 210px; filter: drop-shadow(0 16px 24px #000b); }
+.card { background: #fff; color: var(--ink); border-radius: 30px; padding: 26px 34px; box-shadow: 0 0 0 7px var(--ink), 0 26px 60px #000c; }
+.stamp { font-family: "Lilita One"; color: var(--red); border: 12px solid var(--red); border-radius: 22px; padding: 10px 30px 0; font-size: 150px;
+  background: #ffffffe8; line-height: 1; }
+.label { font-family: "Lilita One"; font-size: 64px; color: #fff; -webkit-text-stroke: 10px #000; paint-order: stroke fill; }
+.memeimg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 640px; max-height: 520px; border-radius: 24px; box-shadow: 0 0 0 7px #000, 0 20px 50px #000c; }
+
+#g-reflexion { left: 640px; top: 470px; }
+#g-comms, #g-comms2 { left: 520px; top: 1000px; width: 540px; height: 240px; }
+#g-comms .label, #g-comms2 .label { position: absolute; right: 150px; top: 18px; font-size: 70px; white-space: nowrap; color: var(--acc); }
+.arrow { position: absolute; right: 10px; top: 70px; width: 150px; height: 150px; }
+#g-prix { left: 104px; top: 470px; width: 760px; }
+#g-prix .card { text-align: center; transform: rotate(-4deg); }
+#g-prix .what { font-weight: 900; font-size: 44px; }
+#g-prix .price { font-family: "Lilita One"; font-size: 140px; line-height: 1; margin-top: 8px; }
+#g-prix .stamp { position: absolute; left: 330px; top: 215px; transform: rotate(-14deg); }
+#g-budget { left: 104px; top: 480px; width: 760px; text-align: center; }
+#g-budget .card { display: inline-block; transform: rotate(3deg); }
+#g-budget .what { font-weight: 900; font-size: 46px; }
+#g-budget .price { font-family: "Lilita One"; font-size: 150px; line-height: 1; color: var(--red); }
+#g-liste { left: 230px; top: 450px; width: 520px; }
+#g-liste .card { transform: rotate(-3deg); }
+#g-liste h3 { margin: 0 0 10px; font-family: "Lilita One"; font-weight: 400; font-size: 70px; }
+#g-liste .it { display: flex; align-items: center; gap: 16px; font-weight: 900; font-size: 40px; height: 62px; }
+#g-liste .box { width: 46px; height: 46px; border-radius: 10px; border: 6px solid var(--ink); display: grid; place-items: center; font-size: 34px; color: #1aa64b; }
+.item { position: absolute; width: 400px; text-align: center; }
+.item .card { padding: 14px 18px 18px; }
+.item .ic { font-size: 120px; line-height: 1.1; }
+.item .nm { font-family: "Lilita One"; font-size: 50px; white-space: nowrap; }
+#g-peripheriques { left: 74px; top: 460px; }
+#g-peripheriques .nm { font-size: 42px; }
+#g-micro { left: 506px; top: 460px; }
+#g-casque { left: 74px; top: 790px; }
+#g-ecran { left: 506px; top: 790px; }
+#g-osef { left: 140px; top: 520px; width: 700px; text-align: center; }
+#g-osef .stamp { display: inline-block; color: var(--ink); border-color: var(--ink); background: var(--acc); font-size: 170px; transform: rotate(-8deg); }
+#g-osef .emo { font-size: 140px; display: block; margin-bottom: -20px; }
+
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+#endtag { position: absolute; left: 64px; width: 836px; top: 1060px; display: flex; justify-content: center; }
+#endtag .in { background: var(--acc); color: var(--ink); font-family: "Lilita One"; font-size: 56px; border-radius: 22px; padding: 14px 30px 6px; box-shadow: 0 0 0 6px var(--ink), 0 20px 50px #000b; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="title"><div class="in">QUEL <b>SETUP</b> POUR DÉBUTER<br>LE <b>STREAM</b> ? <span class="emo">🎙️</span></div></div>
+
+  <div class="gag" id="g-reflexion"><div class="sticker emo">🤔</div></div>
+
+  <div class="gag" id="g-comms"><div class="label">EN COMM'</div>
+    <svg class="arrow" viewBox="0 0 100 100"><path d="M10 50h62M52 24l26 26-26 26" fill="none" stroke="#000" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 50h62M52 24l26 26-26 26" fill="none" stroke="#ccff00" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="gag" id="g-comms2"><div class="label">ICI</div>
+    <svg class="arrow" viewBox="0 0 100 100"><path d="M10 50h62M52 24l26 26-26 26" fill="none" stroke="#000" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 50h62M52 24l26 26-26 26" fill="none" stroke="#ccff00" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+  <div class="gag" id="g-prix">
+    <div class="card"><div class="what">SETUP DE STREAMER PRO <span class="emo">✨</span></div><div class="price">4 999 €</div></div>
+    <div class="stamp" id="prixStamp">NON.</div>
+  </div>
+
+  <div class="gag" id="g-budget"><div class="card"><div class="what">MON BUDGET <span class="emo">💸</span></div><div class="price" id="budgetVal">500 €</div></div></div>
+
+  <div class="gag" id="g-liste"><div class="card"><h3><span class="emo">📝</span> LA LISTE</h3>
+    <div class="it"><span class="box"></span>périphériques</div><div class="it"><span class="box"></span>micro</div>
+    <div class="it"><span class="box"></span>casque</div><div class="it"><span class="box"></span>écran</div></div></div>
+
+  <div class="gag item" id="g-peripheriques"><div class="card"><div class="ic emo">⌨️🖱️</div><div class="nm">PÉRIPHÉRIQUES</div></div></div>
+  <div class="gag item" id="g-micro"><div class="card"><div class="ic emo">🎙️</div><div class="nm">MICRO</div></div></div>
+  <div class="gag item" id="g-casque"><div class="card"><div class="ic emo">🎧</div><div class="nm">CASQUE</div></div></div>
+  <div class="gag item" id="g-ecran"><div class="card"><div class="ic emo">🖥️</div><div class="nm">ÉCRAN</div></div></div>
+
+  <div class="gag" id="g-osef"><span class="emo">🤷</span><div class="stamp">OSEF</div></div>
+
+  <div id="endtag"><div class="in"><span class="emo">👇</span> TON SETUP EN COMM'</div></div>
+  <div id="cap"><div class="line" id="capLine"></div></div>
+  <div id="flash"></div>
+</div>
+<script src="edit.js"></script>
+<script src="overlay.js"></script>
+</body>
+</html>

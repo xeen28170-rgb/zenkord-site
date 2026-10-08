@@ -1,0 +1,6 @@
+input/
+out/
+build/
+node_modules
+assets/memes/*
+!assets/memes/LISEZMOI.txt
