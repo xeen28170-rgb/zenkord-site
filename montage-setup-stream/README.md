@@ -28,6 +28,7 @@ npm run render        # -> out\montage-setup-stream.mp4 (+ vérifications)
 | Coupes / zoom de chaque plan | `src/edit.js` → `SEGMENTS` |
 | Gags (moments, sons) | `src/edit.js` → `GAGS` ; visuels dans `src/overlay.html` / `overlay.js` |
 | Vrais mèmes | `assets/memes/` (voir LISEZMOI.txt) |
+| Miniature (couverture TikTok) | `node scripts/miniature.mjs [temps]` → `out/miniature.png` ; mise en page dans `src/miniature.html` |
 | Bruitages, musique | `scripts/sfx.mjs` |
 
 Aperçu du calque sans la vidéo : ouvrir `src/overlay.html` dans Chrome (`?t=12` pour figer une image).
