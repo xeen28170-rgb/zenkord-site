@@ -7,68 +7,26 @@
 @font-face { font-family: "Lilita One"; src: url(../../pub-vnr/assets/fonts/lilita-one-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC; }
 @font-face { font-family: "Lilita One"; src: url(../../pub-vnr/assets/fonts/lilita-one-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+1E00-1E9F; }
 @font-face { font-family: "Nunito"; font-weight: 500 900; src: url(../../pub-vnr/assets/fonts/nunito-latin.woff2) format("woff2"); }
-:root { --acc: #ccff00; --pink: #ff3dae; --red: #ff3b3b; --ink: #0b0b0b; }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-#c { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0b; font-family: "Nunito", sans-serif; color: #fff; }
-.emo { font-family: "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji", sans-serif; }
-.out { -webkit-text-stroke: 16px var(--ink); paint-order: stroke fill; }
-
-/* fond : la photo floutée + lueur verte + trame */
-#bgphoto { position: absolute; inset: -80px; background: url(../build/thumb/photo.png) center / cover; filter: blur(46px) brightness(.38) saturate(1.2); }
-#glow { position: absolute; width: 1300px; height: 1300px; left: -110px; top: 300px; border-radius: 50%; background: radial-gradient(circle, #ccff0055 0%, transparent 62%); }
-#rays { position: absolute; left: 540px; top: 1000px; width: 2600px; height: 2600px; margin: -1300px 0 0 -1300px;
-  background: repeating-conic-gradient(#ffffff0d 0 6deg, transparent 6deg 18deg); }
-
-/* photo principale */
-#photo { position: absolute; left: 40px; top: 600px; width: 1000px; height: 960px; border-radius: 44px; overflow: hidden;
-  transform: rotate(-2.5deg); box-shadow: 0 0 0 14px var(--ink), 0 0 0 24px var(--acc), 0 40px 90px #000; }
+/* Sobre : noir, blanc, la photo. Texte dans la zone 3:4 visible sur la grille du profil (y 240 → 1680). */
+#c { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #111; font-family: "Nunito", sans-serif; color: #fff; }
+#bgphoto { position: absolute; inset: -80px; background: url(../build/thumb/photo.png) center / cover; filter: blur(50px) brightness(.3) grayscale(.6); }
+#photo { position: absolute; left: 60px; top: 640px; width: 960px; height: 920px; border-radius: 36px; overflow: hidden; box-shadow: 0 30px 80px #000c; }
 #photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-#photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, #000a 100%); }
-
-/* titre (dans la zone 3:4 visible sur la grille du profil : y 240 → 1680) */
-#kicker { position: absolute; left: 0; right: 0; top: 268px; display: flex; justify-content: center; }
-#kicker > span { font-family: "Lilita One"; font-size: 56px; color: var(--ink); background: #fff; border-radius: 18px; padding: 12px 28px 4px;
-  transform: rotate(-2deg); box-shadow: 0 0 0 8px var(--ink); }
-#title { position: absolute; left: 0; right: 0; top: 368px; text-align: center; font-family: "Lilita One"; line-height: .9; }
-#title .a { display: block; font-size: 200px; color: var(--acc); transform: rotate(-3deg); text-shadow: 0 14px 0 var(--ink); }
-
-#q { position: absolute; left: 0; right: 0; top: 1390px; text-align: center; font-family: "Lilita One"; font-size: 150px; line-height: .9;
-  transform: rotate(-2deg); text-shadow: 0 12px 0 var(--ink); }
-
-/* autocollants */
-.stk { position: absolute; }
-#budget { left: 610px; top: 1150px; transform: rotate(8deg); background: #fff; color: var(--ink); border-radius: 26px; padding: 16px 26px 12px;
-  text-align: center; box-shadow: 0 0 0 9px var(--ink), 0 24px 50px #000c; }
-#budget .l { font-weight: 900; font-size: 36px; }
-#budget .v { font-family: "Lilita One"; font-size: 96px; line-height: 1; color: var(--red); }
-.ic { font-size: 120px; filter: drop-shadow(0 12px 14px #000c); }
-#i1 { left: 40px; top: 560px; transform: rotate(-14deg); }
-#i2 { left: 860px; top: 540px; transform: rotate(12deg); }
-#i3 { left: 26px; top: 1180px; transform: rotate(-8deg); font-size: 110px; }
-
-#cta { position: absolute; left: 0; right: 0; top: 1600px; display: flex; justify-content: center; }
-#cta > span { font-family: "Lilita One"; font-size: 54px; background: var(--acc); color: var(--ink); border-radius: 20px; padding: 14px 30px 6px; box-shadow: 0 0 0 8px var(--ink); }
+#title { position: absolute; left: 60px; right: 60px; top: 300px; text-align: center; font-family: "Lilita One"; line-height: .95; }
+#title .a { display: block; font-size: 156px; white-space: nowrap; }
+#title .b { display: block; font-size: 80px; margin-top: 18px; color: #d8d8d8; }
+#tag { position: absolute; left: 0; right: 0; top: 1600px; text-align: center; }
+#tag span { display: inline-block; font-weight: 900; font-size: 44px; color: #111; background: #fff; border-radius: 999px; padding: 14px 36px; }
 </style>
 </head>
 <body>
 <div id="c">
   <div id="bgphoto"></div>
-  <div id="rays"></div>
-  <div id="glow"></div>
-
+  <div id="title"><span class="a">QUEL SETUP&nbsp;?</span><span class="b">pour débuter le stream</span></div>
   <div id="photo"><img src="../build/thumb/photo.png" alt=""></div>
-
-  <div id="kicker"><span>JE DÉBUTE LE STREAM <span class="emo">🎙️</span></span></div>
-  <div id="title"><span class="a out">AIDEZ-MOI</span></div>
-
-  <div class="stk ic emo" id="i1">🎧</div>
-  <div class="stk ic emo" id="i2">🖥️</div>
-  <div class="stk ic emo" id="i3">⌨️</div>
-  <div class="stk" id="budget"><div class="l">MON BUDGET <span class="emo">💸</span></div><div class="v">12,50 €</div></div>
-
-  <div id="q" class="out">QUEL SETUP ?</div>
-  <div id="cta"><span><span class="emo">👇</span> DIS-LE EN COMM'</span></div>
+  <div id="tag"><span>budget limité · dis-le en comm'</span></div>
 </div>
 </body>
 </html>
