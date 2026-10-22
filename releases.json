@@ -7,9 +7,27 @@
     "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.24.1",
     "assets": [
       {
-        "name": "Zenkord-Installer.exe",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/Zenkord-Installer.exe",
-        "size": 72334043,
+        "name": "zenkord-1.24.1-mac-arm64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/zenkord-1.24.1-mac-arm64.dmg",
+        "size": 166900447,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.24.1-mac-arm64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/zenkord-1.24.1-mac-arm64.zip",
+        "size": 166867662,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.24.1-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/zenkord-1.24.1-mac-x64.dmg",
+        "size": 172362484,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.24.1-mac-x64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/zenkord-1.24.1-mac-x64.zip",
+        "size": 172368116,
         "downloads": 0
       },
       {
@@ -25,27 +43,15 @@
         "downloads": 0
       },
       {
+        "name": "Zenkord-Installer.exe",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/Zenkord-Installer.exe",
+        "size": 72334043,
+        "downloads": 0
+      },
+      {
         "name": "Zenkord.user.js",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/Zenkord.user.js",
         "size": 10022747,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.24.1-mac-arm64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/zenkord-1.24.1-mac-arm64.dmg",
-        "size": 166900447,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.24.1-mac-x64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/zenkord-1.24.1-mac-x64.dmg",
-        "size": 172362484,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.24.1-mac-arm64.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.1/zenkord-1.24.1-mac-arm64.zip",
-        "size": 166867662,
         "downloads": 0
       }
     ]
@@ -58,39 +64,9 @@
     "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.24.0",
     "assets": [
       {
-        "name": "Zenkord-Installer.exe",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Installer.exe",
-        "size": 72298446,
-        "downloads": 2
-      },
-      {
-        "name": "Zenkord.user.js",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord.user.js",
-        "size": 5756116,
-        "downloads": 0
-      },
-      {
-        "name": "Zenkord-Firefox.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Firefox.zip",
-        "size": 3409303,
-        "downloads": 0
-      },
-      {
-        "name": "Zenkord-Chrome.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Chrome.zip",
-        "size": 3408948,
-        "downloads": 0
-      },
-      {
         "name": "zenkord-1.24.0-mac-arm64.dmg",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-arm64.dmg",
         "size": 161943915,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.24.0-mac-x64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-x64.dmg",
-        "size": 167390242,
         "downloads": 0
       },
       {
@@ -100,9 +76,39 @@
         "downloads": 0
       },
       {
+        "name": "zenkord-1.24.0-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-x64.dmg",
+        "size": 167390242,
+        "downloads": 0
+      },
+      {
         "name": "zenkord-1.24.0-mac-x64.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/zenkord-1.24.0-mac-x64.zip",
         "size": 167393858,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Chrome.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Chrome.zip",
+        "size": 3408948,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Firefox.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Firefox.zip",
+        "size": 3409303,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Installer.exe",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord-Installer.exe",
+        "size": 72298446,
+        "downloads": 2
+      },
+      {
+        "name": "Zenkord.user.js",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.24.0/Zenkord.user.js",
+        "size": 5756116,
         "downloads": 0
       }
     ]
@@ -115,16 +121,28 @@
     "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.23.3",
     "assets": [
       {
-        "name": "Zenkord.user.js",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord.user.js",
-        "size": 5757900,
-        "downloads": 2
+        "name": "zenkord-1.23.3-mac-arm64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-arm64.dmg",
+        "size": 161504533,
+        "downloads": 0
       },
       {
-        "name": "Zenkord-Installer.exe",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord-Installer.exe",
-        "size": 72298446,
-        "downloads": 5
+        "name": "zenkord-1.23.3-mac-arm64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-arm64.zip",
+        "size": 161428720,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.3-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-x64.dmg",
+        "size": 166934482,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.3-mac-x64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-x64.zip",
+        "size": 166929174,
+        "downloads": 0
       },
       {
         "name": "Zenkord-Chrome.zip",
@@ -139,28 +157,16 @@
         "downloads": 2
       },
       {
-        "name": "zenkord-1.23.3-mac-arm64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-arm64.dmg",
-        "size": 161504533,
-        "downloads": 0
+        "name": "Zenkord-Installer.exe",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord-Installer.exe",
+        "size": 72298446,
+        "downloads": 5
       },
       {
-        "name": "zenkord-1.23.3-mac-x64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-x64.dmg",
-        "size": 166934482,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.3-mac-arm64.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-arm64.zip",
-        "size": 161428720,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.3-mac-x64.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/zenkord-1.23.3-mac-x64.zip",
-        "size": 166929174,
-        "downloads": 0
+        "name": "Zenkord.user.js",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.3/Zenkord.user.js",
+        "size": 5757900,
+        "downloads": 2
       }
     ]
   },
@@ -172,39 +178,9 @@
     "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.23.2",
     "assets": [
       {
-        "name": "Zenkord-Chrome.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Chrome.zip",
-        "size": 3366892,
-        "downloads": 0
-      },
-      {
-        "name": "Zenkord.user.js",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord.user.js",
-        "size": 5757900,
-        "downloads": 0
-      },
-      {
-        "name": "Zenkord-Installer.exe",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Installer.exe",
-        "size": 72293326,
-        "downloads": 3
-      },
-      {
-        "name": "Zenkord-Firefox.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Firefox.zip",
-        "size": 3367247,
-        "downloads": 0
-      },
-      {
         "name": "zenkord-1.23.2-mac-arm64.dmg",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-arm64.dmg",
         "size": 161504756,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.2-mac-x64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-x64.dmg",
-        "size": 166934439,
         "downloads": 0
       },
       {
@@ -214,9 +190,39 @@
         "downloads": 0
       },
       {
+        "name": "zenkord-1.23.2-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-x64.dmg",
+        "size": 166934439,
+        "downloads": 0
+      },
+      {
         "name": "zenkord-1.23.2-mac-x64.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/zenkord-1.23.2-mac-x64.zip",
         "size": 166929193,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Chrome.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Chrome.zip",
+        "size": 3366892,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Firefox.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Firefox.zip",
+        "size": 3367247,
+        "downloads": 0
+      },
+      {
+        "name": "Zenkord-Installer.exe",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord-Installer.exe",
+        "size": 72293326,
+        "downloads": 3
+      },
+      {
+        "name": "Zenkord.user.js",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.2/Zenkord.user.js",
+        "size": 5757900,
         "downloads": 0
       }
     ]
@@ -228,6 +234,30 @@
     "prerelease": false,
     "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.23.1",
     "assets": [
+      {
+        "name": "zenkord-1.23.1-mac-arm64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-arm64.dmg",
+        "size": 161501513,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.1-mac-arm64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-arm64.zip",
+        "size": 161428168,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.1-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-x64.dmg",
+        "size": 166933155,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.1-mac-x64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-x64.zip",
+        "size": 166928622,
+        "downloads": 0
+      },
       {
         "name": "Zenkord-Chrome.zip",
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/Zenkord-Chrome.zip",
@@ -251,30 +281,6 @@
         "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/Zenkord.user.js",
         "size": 5756747,
         "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.1-mac-arm64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-arm64.dmg",
-        "size": 161501513,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.1-mac-x64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-x64.dmg",
-        "size": 166933155,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.1-mac-arm64.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-arm64.zip",
-        "size": 161428168,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.1-mac-x64.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.1/zenkord-1.23.1-mac-x64.zip",
-        "size": 166928622,
-        "downloads": 0
       }
     ]
   },
@@ -286,9 +292,27 @@
     "url": "https://github.com/xeen28170-rgb/zenkord/releases/tag/v1.23.0",
     "assets": [
       {
-        "name": "Zenkord.user.js",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/Zenkord.user.js",
-        "size": 5756747,
+        "name": "zenkord-1.23.0-mac-arm64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-arm64.dmg",
+        "size": 161501529,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.0-mac-arm64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-arm64.zip",
+        "size": 161428212,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.0-mac-x64.dmg",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-x64.dmg",
+        "size": 166933255,
+        "downloads": 0
+      },
+      {
+        "name": "zenkord-1.23.0-mac-x64.zip",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-x64.zip",
+        "size": 166928666,
         "downloads": 0
       },
       {
@@ -310,27 +334,9 @@
         "downloads": 1
       },
       {
-        "name": "zenkord-1.23.0-mac-arm64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-arm64.dmg",
-        "size": 161501529,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.0-mac-x64.dmg",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-x64.dmg",
-        "size": 166933255,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.0-mac-arm64.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-arm64.zip",
-        "size": 161428212,
-        "downloads": 0
-      },
-      {
-        "name": "zenkord-1.23.0-mac-x64.zip",
-        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/zenkord-1.23.0-mac-x64.zip",
-        "size": 166928666,
+        "name": "Zenkord.user.js",
+        "url": "https://github.com/xeen28170-rgb/zenkord/releases/download/v1.23.0/Zenkord.user.js",
+        "size": 5756747,
         "downloads": 0
       }
     ]
